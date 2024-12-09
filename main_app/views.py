@@ -95,7 +95,7 @@ class AgentCreate(LoginRequiredMixin, CreateView):
     fields = '__all__' # Shows form of all properties, including owned user
     # Bottom excludes user
     # fields = ['code_name', 'real_name', 'agent_type', 'experience_level', 
-    #           'gender', 'age', 'height_cm', 'weight_kg'
+    #           'gender', 'age', 'height_cm', 'weight_kg',
     #           'place_of_birth', 'region', 
     #           'tagline', 'description', 'previous_agency']
     
@@ -112,7 +112,7 @@ class AgentUpdate(LoginRequiredMixin, UpdateView):
     fields = '__all__'
     # Can disallow updating of a field by excluding it
     # fields = ['code_name', 'real_name', 'agent_type', 'experience_level', 
-    #           'gender', 'age', 'height_cm', 'weight_kg'
+    #           'gender', 'age', 'height_cm', 'weight_kg',
     #           'place_of_birth', 'region', 
     #           'tagline', 'description', 'previous_agency']
 
