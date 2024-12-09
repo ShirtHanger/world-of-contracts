@@ -17,6 +17,13 @@ urlpatterns = [
     # path('agents/<int:pk>/update/', views.AgentUpdate.as_view(), name='agent-update'),
     # path('agents/<int:pk>/delete/', views.AgentDelete.as_view(), name='agent-delete'),
     
+    # Agent skills route
+    # path(
+    # 'agents/<int:agent_id>/add-skill/', 
+    # views.add_skill, 
+    # name='add-skill'
+    # ),
+    
     # Gadget Routes
     path('gadgets/', views.gadget_index, name='gadget-index'),
     path('gadgets/detail/', views.gadget_detail, name='gadget-detail'), # Gadget details, collects by ID.

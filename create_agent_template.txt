@@ -1,0 +1,179 @@
+new_agent = Agent(
+    code_name='Ghost',
+    real_name='John Doe',
+    agent_type='S',  # Spy
+    experience_level='E',  # Expert
+    gender='Male',
+    age=35,
+    height_cm=180,
+    weight_kg=75,
+    place_of_birth='Unknown',
+    region='Europe',
+    tagline='A master of disguise and deception.',
+    description='Ghost is known for his ability to blend into any environment, making him a top-tier spy.',
+    previous_agency='MI6'
+)
+
+new_agent.save()
+
+new_agent = Agent(
+    code_name='Shadow',
+    real_name='Jane Smith',
+    agent_type='A',  # Assassin
+    experience_level='A',  # Advanced
+    gender='Female',
+    age=30,
+    height_cm=165,
+    weight_kg=60,
+    place_of_birth='Moscow',
+    region='Russia',
+    tagline='Silent but deadly.',
+    description='Shadow is an expert assassin known for her stealth and precision.',
+    previous_agency='KGB'
+)
+
+new_agent.save()
+
+new_agent = Agent(
+    code_name='Falcon',
+    real_name='Alex Turner',
+    agent_type='C',  # Covert Ops
+    experience_level='I',  # Intermediate
+    gender='Male',
+    age=28,
+    height_cm=175,
+    weight_kg=70,
+    place_of_birth='Toronto',
+    region='North America',
+    tagline='Eyes in the sky.',
+    description='Falcon specializes in aerial reconnaissance and covert operations.',
+    previous_agency='CIA'
+)
+
+new_agent.save()
+
+new_agent = Agent(
+    code_name='Viper',
+    real_name='Emily White',
+    agent_type='E',  # Enforcer
+    experience_level='M',  # Master
+    gender='Female',
+    age=32,
+    height_cm=170,
+    weight_kg=68,
+    place_of_birth='Rio de Janeiro',
+    region='South America',
+    tagline='Toxic and deadly.',
+    description='Viper is an enforcer who gets the job done with ruthless efficiency.',
+    previous_agency='Interpol'
+)
+
+new_agent.save()
+
+new_agent = Agent(
+    code_name='Chameleon',
+    real_name='David Lee',
+    agent_type='I',  # Infiltration/Covert Ops
+    experience_level='N',  # Novice
+    gender='Male',
+    age=25,
+    height_cm=178,
+    weight_kg=72,
+    place_of_birth='Beijing',
+    region='Asia',
+    tagline='Adapts to any situation.',
+    description='Chameleon is a newcomer specializing in infiltration and adaptation.',
+    previous_agency='NSA'
+)
+
+new_agent.save()
+
+new_agent_6 = Agent(
+    code_name='Maverick',
+    real_name='Sophie Kim',
+    agent_type='F',  # Fieldwork/Analysis
+    experience_level='A',  # Advanced
+    gender='Female',
+    age=29,
+    height_cm=160,
+    weight_kg=55,
+    place_of_birth='Seoul',
+    region='Asia',
+    tagline='Quick thinker on the ground.',
+    description='Maverick excels in fieldwork and rapid analysis under pressure.',
+    previous_agency='FBI'
+)
+
+new_agent.save()
+
+new_agent_7 = Agent(
+    code_name='Oracle',
+    real_name='Marcus Bell',
+    agent_type='H',  # Handler
+    experience_level='E',  # Expert
+    gender='Male',
+    age=40,
+    height_cm=182,
+    weight_kg=80,
+    place_of_birth='London',
+    region='Europe',
+    tagline='Guiding agents from the shadows.',
+    description='Oracle coordinates missions and supports agents with vital intel.',
+    previous_agency='MI5'
+)
+
+new_agent.save()
+
+new_agent = Agent(
+    code_name='Raven',
+    real_name='Lisa Green',
+    agent_type='U',  # Undercover Agent
+    experience_level='I',  # Intermediate
+    gender='Female',
+    age=34,
+    height_cm=168,
+    weight_kg=62,
+    place_of_birth='Paris',
+    region='Europe',
+    tagline='Master of undercover operations.',
+    description='Raven specializes in deep undercover missions to gather intelligence.',
+    previous_agency='DGSE'
+)
+
+new_agent.save()
+
+new_agent = Agent(
+    code_name='Steel',
+    real_name='Victor Stone',
+    agent_type='M',  # Mole
+    experience_level='M',  # Master
+    gender='Male',
+    age=38,
+    height_cm=185,
+    weight_kg=90,
+    place_of_birth='New York',
+    region='North America',
+    tagline='The ultimate double agent.',
+    description='Steel has infiltrated enemy organizations, playing both sides to perfection.',
+    previous_agency='CIA'
+)
+
+new_agent.save()
+
+new_agent = Agent(
+    code_name='Thunder',
+    real_name='Rachel Adams',
+    agent_type='E',  # Enforcer
+    experience_level='A',  # Advanced
+    gender='Female',
+    age=31,
+    height_cm=172,
+    weight_kg=65,
+    place_of_birth='Sydney',
+    region='Australia',
+    tagline='Fury unleashed.',
+    description='Thunder is an enforcer known for her strength and no-nonsense approach.',
+    previous_agency='ASIO'
+)
+
+new_agent.save()
