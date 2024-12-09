@@ -18,21 +18,38 @@
       </div>
       <nav>
         <ul>
+
+          {% if user.is_authenticated %} <!-- Conditional based on if user is logged in or not -->
+
           <li><a href="{% url 'about' %}">About our organization</a></li>
           <li><a href="{% url 'agent-index' %}">View your agents</a></li>
-          <li><a href="/">Create an agent</a></li> {% comment %} agent-create {% endcomment %}
+          <li><a href="{% url 'agent-create' %}">Create an agent</a></li>
 
           <li><a href="{% url 'gadget-index' %}">View your gadgets</a></li>
           <li><a href="/">Create a gadget</a></li> {% comment %} gadget-create {% endcomment %}
 
           <li><a href="{% url 'mission-index' %}">View missions</a></li>
           <li><a href="/">Create an mission</a></li> {% comment %} mission-create {% endcomment %}
+
+          <!-- Logout -->
+          <li>
+            <form id="logout-form" method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit">Log out</button>
+            </form>
+          </li>
+
+          {% else %}
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'home' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          {% endif %}
         </ul>
       </nav>
     </header>
     <main>
-      <!-- Page content renders here-->
      {% block content %} 
+     <!-- Page content renders here-->
      {% endblock %}
      </main>
   </body>

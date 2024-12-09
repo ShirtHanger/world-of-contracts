@@ -2,8 +2,7 @@ from django.urls import path
 from . import views # Import views to connect routes to view functions
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    # path('', views.Home.as_view(), name='home'),
+    path('', views.Home.as_view(), name='home'),
     path('about/', views.about, name='about'),
     
     # Replace 'detail' with something like <int:agent_id> when database is created
@@ -11,11 +10,11 @@ urlpatterns = [
     
     # Agent routes
     path('agents/', views.agent_index, name='agent-index'),
-    path('agents/detail/', views.agent_detail, name='agent-detail'), # Agent details, collects by ID.
+    path('agents/<int:agent_id>/', views.agent_detail, name='agent-detail'), # Agent details, collects by ID.
     
-    # path('agents/create/', views.AgentCreate.as_view(), name='agent-create'),
-    # path('agents/<int:pk>/update/', views.AgentUpdate.as_view(), name='agent-update'),
-    # path('agents/<int:pk>/delete/', views.AgentDelete.as_view(), name='agent-delete'),
+    path('agents/create/', views.AgentCreate.as_view(), name='agent-create'),
+    path('agents/<int:pk>/update/', views.AgentUpdate.as_view(), name='agent-update'),
+    path('agents/<int:pk>/delete/', views.AgentDelete.as_view(), name='agent-delete'),
     
     # Agent skills route
     # path(
@@ -49,5 +48,5 @@ urlpatterns = [
     # path('agents/<int:agent_id>/remove-mission/<int:mission_id>/', views.remove_mission, name='remove-mission'),
     
     # Sign up route
-    #path('accounts/signup/', views.signup, name='signup'),
+    path('accounts/signup/', views.signup, name='signup'),
 ]

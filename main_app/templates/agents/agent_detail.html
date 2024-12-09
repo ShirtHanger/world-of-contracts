@@ -1,25 +1,99 @@
+
+
+
 {% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/agents/agent-detail.css' %}" />
+{% endblock %} 
 {% block content %}
-<h1>Agent name Here</h1>
-<hr />
-<p class="page-content">
-    <h2>Agent 47<h2>
-    <h3>Biography</h3>
-    <p>[DATA EXPUNGED]</p>
-    <p>
-        Agent 47 is the world's top assassin, a legendary figure in the shadowy trade of assassination.
-    </p>
-    <p>
-        A victim of illegal experimentation at the sinister "<a href="https://hitman.fandom.com/wiki/Institute_for_Human_Betterment">Institute for Human Betterment</a>" in 1960s Romania, 47 is exceptionally intelligent with superior instincts and reflexes. A man comfortable in his own skin and in total control of his environment. An expert strategist, master of disguises and social chameleon who is always two steps ahead, he is a skilled predator: discrete, precise and endlessly inventive.
-    </p>
-    <p>
-        As a result of his tragic past, 47 is completely devoid of empathy, but is acutely aware of this and has "outsourced" his conscience to his long-time handler <a href="https://hitman.fandom.com/wiki/Diana_Burnwood">Diana Burnwood</a>. She curates 47's contracts, targeting only the most infamous criminals as well as the wealthy, who put themselves above the law.
-    </p>
-    <p>
-        Together, 47 and Ms. Burnwood have developed a signature MO of disappearances, "Tragic accidents" and deaths of natural causes. Carried out with artistry, surgical precision and zero collateral damage. For this reason, 47 boasts a perfect <a href="https://hitman.fandom.com/wiki/International_Contract_Agency">ICA</a> record and remains, at the very most, an urban legend.
-    </p>
-    <p>
-        He is a ghost: Rarely noticed and never remembered...
-    </p>
-</p>
+<section class="agent-container">
+  <div class="agent-img">
+    <img src="" alt="Some roman symbol" />
+  </div>
+  <div class="agent-details">
+    <h1>{{ agent.real_name }}</h1>
+
+    <h3>{{ agent.tagline }}</h3>
+          
+    <p>{{ agent.previous_agency }} agent from {{agent.region}}</p>
+    <p>The {{ agent.get_experience_level_display }} {{ agent.get_agent_type_display }}.</p> 
+   
+    <article class="lore-container">
+        <p>{{ agent.description }}</p>
+    </article>
+
+    <section class="stats-container">
+        <ul>
+            <li>Gender: {{ agent.gender }}</li>
+            <li>Age: {{ agent.age }}</li>
+            <li>Race/Ethnicity: {{ agent.get_race_or_ethnicity_display }}</li>
+            <li>Region: {{ agent.region }}</li>
+            <li>Place of birth: {{ agent.place_of_birth }}</li>
+            <li>Height/Weight: {{ agent.height_cm }}cm/{{ agent.weight_kg }}kg</li>
+            <li>Previous agency: {{ agent.previous_agency }}</li>
+        </ul>
+    </section>
+
+    <h2> Details </h2>
+    
+    
+
+    <!-- Update and delete agent -->
+    <div class="agent-actions">
+      <a href="{% url 'agent-update' agent.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'agent-delete' agent.id %}" class="btn danger">Delete</a>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Items associated with this specific agent -->
+<div class="gadgets-mission-container">
+
+  <!-- Agent gadgets -->
+  <section class="gadgets">
+    <div class="subsection-title">
+      <h2>{{ agent.code_name }}'s Gadgets</h2>
+      <img
+        src=""
+        alt="An ice cream cone agent"
+      />
+      <img src="" alt="A agent as onigiri" />
+      <img
+        src=""
+        alt="A kabob of agents"
+      />
+    </div>
+
+
+  </section>
+
+  <!-- Agent missions -->
+  <section class="missions">
+    <div class="subsection-title">
+      <h2>Missions</h2>
+    </div>
+
+    <!-- Missions for this specific agent -->
+    <h3>{{ agent.code_name }}'s Missions</h3>
+    <div class="subsection-content">
+    </div>
+
+
+    
+    <!-- All missions -->
+    <h3>Available Missions</h3>
+    <div class="subsection-content">
+    </div>
+
+  </section>
+
+
+  </section>
+  
+
+</div>
+
 {% endblock %}
