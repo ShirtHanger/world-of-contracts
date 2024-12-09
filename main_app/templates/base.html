@@ -20,8 +20,13 @@
         <ul>
           <li><a href="{% url 'about' %}">About our organization</a></li>
           <li><a href="{% url 'agent-index' %}">View your agents</a></li>
+          <li><a href="/">Create an agent</a></li> {% comment %} agent-create {% endcomment %}
+
           <li><a href="{% url 'gadget-index' %}">View your gadgets</a></li>
+          <li><a href="/">Create a gadget</a></li> {% comment %} gadget-create {% endcomment %}
+
           <li><a href="{% url 'mission-index' %}">View missions</a></li>
+          <li><a href="/">Create an mission</a></li> {% comment %} mission-create {% endcomment %}
         </ul>
       </nav>
     </header>
