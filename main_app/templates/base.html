@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="" />
+    <title>Global Contracts</title>
+    {% block head %} 
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+      <div class="header-logo-container">
+        <a href="/">
+          <img src="" alt="Global Contracts Logo" />
+        </a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="{% url 'about' %}">About our organization</a></li>
+          <li><a href="{% url 'agent-index' %}">View your agents</a></li>
+          <li><a href="{% url 'gadget-index' %}">View your gadgets</a></li>
+          <li><a href="{% url 'mission-index' %}">View missions</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <!-- Page content renders here-->
+     {% block content %} 
+     {% endblock %}
+     </main>
+  </body>
+</html>
