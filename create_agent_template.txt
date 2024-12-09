@@ -88,7 +88,7 @@ new_agent = Agent(
 
 new_agent.save()
 
-new_agent_6 = Agent(
+new_agent = Agent(
     code_name='Maverick',
     real_name='Sophie Kim',
     agent_type='F',  # Fieldwork/Analysis
@@ -106,7 +106,7 @@ new_agent_6 = Agent(
 
 new_agent.save()
 
-new_agent_7 = Agent(
+new_agent = Agent(
     code_name='Oracle',
     real_name='Marcus Bell',
     agent_type='H',  # Handler
@@ -177,3 +177,11 @@ new_agent = Agent(
 )
 
 new_agent.save()
+
+test_agent = Agent(
+    code_name='Viper',
+    gender='Female',
+    tagline='Fury unleashed.',
+)
+
+test_agent.save()

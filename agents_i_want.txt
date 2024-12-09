@@ -1,0 +1,119 @@
+    <h3>Solid Snake</h3>
+    <p>Espionage</p>
+
+    <h3>Agent 47</h3>
+    <p>Assassination</p>
+
+    <h3>Natasha Romanoff</h3>
+    <p>Espionage</p>
+
+    <h3>Jason Bourne</h3>
+    <p>Counterintelligence</p>
+
+    <h3>Ethan Hunt</h3>
+    <p>Covert Operations</p>
+
+    <h3>Sam Fisher</h3>
+    <p>Infiltration</p>
+
+    <h3>Lorraine Broughton</h3>
+    <p>Espionage</p>
+
+    <h3>John Wick</h3>
+    <p>Retaliation</p>
+
+    <h3>Carmen Sandiego</h3>
+    <p>Theft & Espionage</p>
+
+    <h3>Jack Ryan</h3>
+    <p>Analysis & Fieldwork</p>
+
+            <!-- Solid Snake -->
+        <h3>Stealth Camouflage</h3>
+        <p>Equipment</p>
+
+        <!-- Agent 47 -->
+        <h3>ICA Silverballer</h3>
+        <p>Weapon</p>
+
+        <!-- Natasha Romanoff -->
+        <h3>Widow's Bite</h3>
+        <p>Weapon</p>
+
+        <!-- Jason Bourne -->
+        <h3>Encrypted Communication Watch</h3>
+        <p>Equipment</p>
+
+        <!-- Ethan Hunt -->
+        <h3>Face Mask Generator</h3>
+        <p>Equipment</p>
+
+        <!-- Sam Fisher -->
+        <h3>Trifocal Goggles</h3>
+        <p>Equipment</p>
+
+        <!-- Lorraine Broughton -->
+        <h3>Concealed Blade Heels</h3>
+        <p>Weapon</p>
+
+        <!-- John Wick -->
+        <h3>Taran Tactical Combat Handgun</h3>
+        <p>Weapon</p>
+
+        <!-- Carmen Sandiego -->
+        <h3>Grappling Hook</h3>
+        <p>Equipment</p>
+
+        <!-- Jack Ryan -->
+        <h3>Portable Surveillance Kit</h3>
+        <p>Equipment</p>
+
+                <h3>Shadow Moses Incident</h3>
+        <h4>Counter Rebellion</h4>
+        <h4>Location: Fox Archipelago</h4>
+        <h5>Agent(s): Solid Snake</h5>
+
+        <h3>The Finish Line</h3>
+        <h4>Assassination</h4>
+        <h4>Location: Miami, Florida</h4>
+        <h4>Agent(s): Agent 47</h4>
+
+        <h3>Red Room Escape</h3>
+        <h4>Espionage</h4>
+        <h4>Location: Moscow, Russia</h4>
+        <h5>Agent(s): Natasha Romanoff</h5>
+
+        <h3>Treadstone Unveiling</h3>
+        <h4>Counterintelligence</h4>
+        <h4>Location: Zurich, Switzerland</h4>
+        <h5>Agent(s): Jason Bourne</h5>
+
+        <h3>Mission: Breakout</h3>
+        <h4>Covert Operations</h4>
+        <h4>Location: Langley, Virginia</h4>
+        <h5>Agent(s): Ethan Hunt</h5>
+
+        <h3>Blacklist Extraction</h3>
+        <h4>Infiltration</h4>
+        <h4>Location: Benghazi, Libya</h4>
+        <h5>Agent(s): Sam Fisher</h5>
+
+        <h3>Berlin Undercover</h3>
+        <h4>Espionage</h4>
+        <h4>Location: Berlin, Germany</h4>
+        <h5>Agent(s): Lorraine Broughton</h5>
+
+        <h3>Continental Revenge</h3>
+        <h4>Retaliation</h4>
+        <h4>Location: New York City, USA</h4>
+        <h5>Agent(s): John Wick</h5>
+
+        <h3>Royal Jewel Heist</h3>
+        <h4>Theft & Espionage</h4>
+        <h4>Location: London, England</h4>
+        <h5>Agent(s): Carmen Sandiego</h5>
+
+        <h3>Capitol Conspiracy</h3>
+        <h4>Analysis & Fieldwork</h4>
+        <h4>Location: Washington, D.C., USA</h4>
+        <h5>Agent(s): Jack Ryan</h5>

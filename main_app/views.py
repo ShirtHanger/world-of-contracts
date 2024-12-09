@@ -17,6 +17,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Import HttpResponse to send placeholder responses
 from django.http import HttpResponse
 
+# Import Models
+from .models import Agent#, Gadget, Mission
+# Import form for new skills for agent
+#from .forms import SkillForm
+
 
 def home(request):
     # Placeholder HTML response
@@ -27,12 +32,14 @@ def about(request):
 
 def agent_index(request):
     # Placeholder HTML response
-    return render(request, 'agents/agent_index.html')
+    agents = Agent.objects.all() 
+    return render(request, 'agents/agent_index.html', {'agents': agents})
     
 
 def agent_detail(request):
     # Placeholder HTML response
     return render(request, 'agents/agent_detail.html')
+
     
 
 def gadget_index(request):

@@ -1,44 +1,53 @@
+
+
 {% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/agents/agent-index.css' %}"/>
+{% endblock %} 
 {% block content %}
-<h1>Your agents</h1>
-<hr />
-<p class="page-content">
 
-    <h2> YOUR AGENTS </h2>
+<section class="page-header">
+  <h1>Your Agent List</h1>
+  <img src="" alt="Sunglasses! Put sun glasses!" />
+  <img src="" alt="A dagger probably" />
+  <img src="" alt="A gun maybe" />
+  <img src="" alt="Some roman symbol" />
+</section>
 
-    <h1><a href="{% url 'agent-detail' %}"> TEST DETAIL PAGE</a></h1>
+<section class="card-container">
+  {% for agent in agents %} <!-- For loop, maps all agent data -->
+    <div class="card">
+      <!-- Hard coded URLS (<a href="/agents/{{ agent.id }}">) not reccomended -->
+      <a href="{% url 'agent-detail' %}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img
+              src=""
+              alt="Render image based on experience and type maybe"
+            />
+          </div>
+          <!-- 
+          Double curly braces means page is rendering PYTHON syntax, like react 
+          -->
+          <h2 class="card-title"> [#{{ agent.id }}] - {{ agent.code_name }}</h2>
+          <h3>{{ agent.tagline }}</h3>
+          
+          <p>An {{ agent.previous_agency }} agent from {{agent.region}}</p>
 
-    <h3>Solid Snake</h3>
-    <p>Espionage</p>
+          <p>The {{ agent.experience_level }} {{ agent.agent_type }}.</p>
+          
+          <p><small>{{ agent.description }}</small></p>
 
-    <h3>Agent 47</h3>
-    <p>Assassination</p>
+           <!-- Conditional rendering -->
+          <!-- {% if agent.property %} -->
+          <!-- {% else %} -->
+          <!-- {% endif %} Stops If/Else blocks  -->
 
-    <h3>Natasha Romanoff</h3>
-    <p>Espionage</p>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</section>
 
-    <h3>Jason Bourne</h3>
-    <p>Counterintelligence</p>
-
-    <h3>Ethan Hunt</h3>
-    <p>Covert Operations</p>
-
-    <h3>Sam Fisher</h3>
-    <p>Infiltration</p>
-
-    <h3>Lorraine Broughton</h3>
-    <p>Espionage</p>
-
-    <h3>John Wick</h3>
-    <p>Retaliation</p>
-
-    <h3>Carmen Sandiego</h3>
-    <p>Theft & Espionage</p>
-
-    <h3>Jack Ryan</h3>
-    <p>Analysis & Fieldwork</p>
-      
-
-</p>
 {% endblock %}
-

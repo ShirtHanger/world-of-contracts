@@ -10,9 +10,15 @@ from django.contrib.auth.models import User
 
 from django.db import models
 
-hidden_values = ('[REDACTED]', '[DATA EXPUNGED], [Classified]')
-default='[REDACTED]'
-default=random.choice(hidden_values)
+# hidden_values = ('[REDACTED]', '[DATA EXPUNGED], [Classified]')
+# default='[REDACTED]'
+# default=random.choice(hidden_values)
+
+# Unrequired values will be [REDACTED] if not provided
+def expunge_data():
+    hidden_values = ('[REDACTED]', '[DATA EXPUNGED], [Classified]')
+    expunged_data = random.choice(hidden_values)
+    return expunged_data
 
 
 
@@ -56,21 +62,21 @@ AGENT_EXPERIENCE = (
 
 class Agent(models.Model):
     code_name = models.CharField(max_length=100)
-    real_name = models.CharField(max_length=100, default=random.choice(hidden_values))
+    real_name = models.CharField(max_length=100, default=expunge_data())
     
     agent_type = models.CharField( # Limited choices
-        max_length=1, 
+        max_length=100, 
         # add the 'choices' field option for the AGENT_TYPES tuple
         choices=AGENT_TYPES,
         # set the default value for meal to be Spy (S) by accessing tuple index
-        default=AGENT_TYPES[0][0]
+        default=AGENT_TYPES[0]
     )
     
     experience_level = models.CharField( # Limited choices
-        max_length=1, 
+        max_length=100, 
         choices=AGENT_EXPERIENCE,
         # Default = Novice
-        default=AGENT_EXPERIENCE[0][0]
+        default=AGENT_EXPERIENCE[0]
     )
     
     gender = models.CharField(max_length=100, default='Unknown')
@@ -78,13 +84,13 @@ class Agent(models.Model):
     height_cm = models.IntegerField(default=random.randint(150, 200))
     weight_kg = models.IntegerField(default=random.randint(50, 100))
     
-    place_of_birth = models.CharField(max_length=100, default=random.choice(hidden_values))
-    region = models.CharField(max_length=100, default=random.choice(hidden_values))
+    place_of_birth = models.CharField(max_length=100, default=expunge_data())
+    region = models.CharField(max_length=100, default=expunge_data())
     
     tagline = models.TextField(max_length=250)
-    description = models.TextField(max_length=1000, default=random.choice(hidden_values))
+    description = models.TextField(max_length=1000, default=expunge_data())
     
-    previous_agency = models.CharField(max_length=100, default=random.choice(hidden_values))
+    previous_agency = models.CharField(max_length=100, default=expunge_data())
     
     # user = models.ForeignKey(User, on_delete=models.CASCADE) # User
     
