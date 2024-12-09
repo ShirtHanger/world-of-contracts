@@ -33,9 +33,11 @@
           <h2 class="card-title"> [#{{ agent.id }}] - {{ agent.code_name }}</h2>
           <h3>{{ agent.tagline }}</h3>
           
-          <p>An {{ agent.previous_agency }} agent from {{agent.region}}</p>
+          <p>{{ agent.previous_agency }} agent from {{agent.region}}</p>
 
-          <p>The {{ agent.experience_level }} {{ agent.agent_type }}.</p>
+          <p>The {{ agent.experience_level }} {{ agent.agent_type }}.</p> <!-- Figure out how to render full string -->
+
+          
           
           <p><small>{{ agent.description }}</small></p>
 
