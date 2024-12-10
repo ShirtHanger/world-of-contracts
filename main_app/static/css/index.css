@@ -1,0 +1,51 @@
+.card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    border: 0.1vw inset tomato;
+    /* margin: 2vw; */
+    padding: 1vw;
+    width: 40vw;
+    display: flex;
+    justify-content: space-evenly;
+    transition: background-color ease 0.5s;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    transition: background-color ease 0.5s;
+    background-color: silver;
+}
+
+.card-data-preview {
+    transition: background-color ease 0.5s;
+    color: brown;
+    width: 30vw;
+}
+
+.card-data-preview h3 {
+    background-color: sandybrown;
+}
+
+.card:hover {
+    background-color: chartreuse;
+}
+
+.card-title:hover {
+    background-color: tomato;
+}
+
+@media screen and (max-width: 800px) {
+    .card {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

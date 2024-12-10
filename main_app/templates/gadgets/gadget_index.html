@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
 {% load static %} 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/gadgets/gadget-index.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/index.css' %}"/>
 {% endblock %} 
 {% block content %}
 
@@ -15,24 +15,36 @@
 
 <section class="card-container">
   {% for gadget in gadgets %} <!-- For loop, maps all gadget data -->
-    <div class="card">
+
+    <article class="card">
       <!-- Hard coded URLS (<a href="/gadgets/{{ gadget.id }}">) not reccomended -->
-      <a href="{% url 'gadget-detail' gadget.id %}">
-        <div class="card-content">
-          <!-- 
-          Double curly braces means page is rendering PYTHON syntax, like react 
-          -->
-          <h2 class="card-title"> [#{{ gadget.id }}] - {{ gadget.name }}</h2>
+       
           
-          <p><small>{{ gadget.get_type_display }}</small></p>
-
-          <h3>{{ gadget.tagline }}</h3> 
-
-          <!-- Update and delete gadget -->
-          <div class="gadget-actions">
-            <a href="{% url 'gadget-update' gadget.id %}" class="btn warn">Edit</a>
-            <a href="{% url 'gadget-delete' gadget.id %}" class="btn danger">Delete</a>
+            <!-- 
+            Double curly braces means page is rendering PYTHON syntax, like react 
+            -->
+            <div class="card-title">
+              <a href="{% url 'gadget-detail' gadget.id %}">
+                <h2>[{{ gadget.name }}]</h2>
+              </a>
+            </div>
+  
+            <div class="card-data-preview">
+              <h3>{{ gadget.get_type_display }}</h3> 
+    
+              <p>{{ gadget.tagline }}</p>
+    
+              <small>Gadget File ID #{{ gadget.id }}</small>
+              
+            
+  
+            <!-- Update and delete gadget -->
+              <div class="card-actions">
+                <a href="{% url 'gadget-update' gadget.id %}" class="btn warn">Edit</a>
+                <a href="{% url 'gadget-delete' gadget.id %}" class="btn danger">Delete</a>
+              </div>
           </div>
+       
           
     
 
@@ -41,9 +53,7 @@
           <!-- {% else %} -->
           <!-- {% endif %} Stops If/Else blocks  -->
 
-        </div>
-      </a>
-    </div>
+    </article>
   {% endfor %}
 </section>
 

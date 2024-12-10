@@ -23,6 +23,12 @@
     <button type="submit" class="btn submit">Login</button>
   </form>
 </section>
+{% else %}
+<section class="tagline-container">
+  <p>...</p>
+  <p>[You have been authorized, {{user.username}}]</p>
+</section>
+
 {% endif %}
 
 {% endblock %}
