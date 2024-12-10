@@ -14,22 +14,26 @@
 
     <div class="info-stats-container">
       <section class="info-container">
-        <h1>{{ agent.real_name }}</h1>
-    
-        <h3>{{ agent.tagline }}</h3>
-              
-        <p>{{ agent.previous_agency }} agent from {{agent.region}}</p>
-        <p>The {{ agent.get_experience_level_display }} {{ agent.get_agent_type_display }}.</p>
+        <h1 class="object-title">{{ agent.code_name }}</h1>
+        <ul>
+          <div class="links-card">
+            <li>{{ agent.get_agent_type_display }}</li>
+            <li>{{ agent.get_experience_level_display }} asset</li>
+            <li>{{ agent.previous_agency }}</li>
+          </div>
+        </ul>
+        <h3><small>{{ agent.tagline }}</small></h3>
       </section> 
   
   
       <section class="stats-container">
           
         <div class="stat-card">
-          <h3>Physicals</h3>
+          <h3 class="object-title">Bio</h3>
   
           <ul>
             <div class="links-card">
+              <li>Legal name/Alias: {{ agent.real_name }}</li>
               <li>Gender: {{ agent.gender }}</li>
               <li>Age: {{ agent.age }}</li>
               <li>Race/Ethnicity: {{ agent.get_race_or_ethnicity_display }}</li>
@@ -39,7 +43,7 @@
         </div>
         
         <div class="stat-card">
-          <h3>Origin</h3>
+          <h3 class="object-title">Origin</h3>
   
           <ul>
             <div class="links-card">
@@ -78,16 +82,15 @@
 
   <!-- Agent gadgets -->
   <section class="gadgets">
-    <div class="subsection-title">
+    <div class="object-title">
       <h2>Armory</h2>
-
     </div>
 
     <h3>{{ agent.code_name }}'s Gadgets</h3>
-    <div class="subsection-content">
+    <div class="card-container">
       {% if agent.gadgets.count %} 
         {% for gadget in agent.gadgets.all %}
-          <div class="gadget-container">
+          <div class="card">
             <a href="{% url 'gadget-detail' gadget.id %}">
               <p>{{ gadget.name }} - <small>{{ gadget.get_type_display }}</small></p>
             </a>
@@ -103,11 +106,11 @@
       {% endif %}
     </div>
 
-    <h3>Available Gadgets</h3>
-    <div class="subsection-content">
+    <h3 class="object-title">Available Gadgets</h3>
+    <div class="card-container">
       {% if gadgets.count %} 
         {% for gadget in gadgets.all %}
-          <div class="gadget-container">
+          <div class="card">
             <a href="{% url 'gadget-detail' gadget.id %}">
               <p>{{ gadget.name }} - <small>{{ gadget.get_type_display }}</small></p>
             </a>

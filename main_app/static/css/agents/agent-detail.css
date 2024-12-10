@@ -1,3 +1,7 @@
+body {
+    color: brown;
+}
+
 .info-stats-container {
     display: flex;
     flex-direction: row;
@@ -10,8 +14,41 @@
     justify-content: center;
 }
 
+.object-title {
+    transition: background-color ease 0.5s;
+    background-color: silver;
+    border: 3px outset red;
+}
+
+.object-title:hover {
+    background-color: tomato;
+}
+
 .stats-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.lore-container {
+    background: darkcyan;
+    border: 3px outset red;
+    margin: 0 5vw;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    border: 0.1vw inset tomato;
+    /* margin: 2vw; */
+    padding: 1vw;
+    width: 20vw;
+    display: flex;
+    justify-content: space-evenly;
+    transition: background-color ease 0.5s;
 }

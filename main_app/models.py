@@ -121,7 +121,7 @@ class Gadget(models.Model):
     name = models.CharField(max_length=100)
     tagline = models.CharField(max_length=250)
     
-    description = models.TextField(max_length=1000)
+    description = models.TextField(max_length=5000)
     
     type = models.CharField(
         max_length=1, 
@@ -177,7 +177,7 @@ class Agent(models.Model):
 
     
     tagline = models.CharField(max_length=250)
-    description = models.TextField(max_length=1000, default=expunge_data())
+    description = models.TextField(max_length=5000, default=expunge_data())
     
     previous_agency = models.CharField(max_length=100, default=expunge_data())
     
