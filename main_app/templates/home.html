@@ -5,18 +5,17 @@
 {% endblock %}
 {% block content %}
 
-<section class="logo-container">
-  <img src="" alt="Global Contracts Second Logo" />
+<section class="tagline-container">
+  <p>[Clearance required]</p>
 </section>
-<p>Welcome to Global Contracts!</p>
-<h1>[DATA EXPUNGED]</h1>
+
 
 <!--  Conditional log in-sign up -->
 
 {% if not user.is_authenticated %}
 <section>
   <form action="{% url 'home' %}" method="post" class="login">
-    <h1>Login</h1>
+    <h1>Enter your credentials</h1>
     {% csrf_token %} {{ form.as_p }}
     <!-- This is a feature of Django’s authentication that will automatically redirect a 
      user that tries to access a protected route back to that route after they log in -->

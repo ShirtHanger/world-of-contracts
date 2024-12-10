@@ -1,5 +1,3 @@
-
-
 {% extends 'base.html' %} 
 {% load static %} 
 {% block head %}
@@ -17,21 +15,18 @@
 
 <section class="card-container">
   {% for agent in agents %} <!-- For loop, maps all agent data -->
+
     <div class="card">
       <!-- Hard coded URLS (<a href="/agents/{{ agent.id }}">) not reccomended -->
       <a href="{% url 'agent-detail' agent.id %}">
-        <div class="card-content">
-          </div>
+        
           <!-- 
           Double curly braces means page is rendering PYTHON syntax, like react 
           -->
           <h2 class="card-title"> [#{{ agent.id }}] - {{ agent.code_name }}</h2>
-          <h3>{{ agent.tagline }}</h3>
-          
-          <p>{{ agent.previous_agency }} agent from {{agent.region}}</p>
 
-          <p>The {{ agent.get_experience_level_display }} {{ agent.get_agent_type_display }}.</p>
-          <h6>(File created by {{ agent.user }})</h6> 
+          <h3>The {{ agent.get_experience_level_display }} {{ agent.get_agent_type_display }}.</h3>
+          <p>{{ agent.tagline }}</p>
 
           <!-- Update and delete agent -->
           <div class="agent-actions">
@@ -46,7 +41,7 @@
           <!-- {% else %} -->
           <!-- {% endif %} Stops If/Else blocks  -->
 
-        </div>
+
       </a>
     </div>
   {% endfor %}

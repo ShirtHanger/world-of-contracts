@@ -16,38 +16,52 @@
   </head>
   <body>
     <header>
-      <div class="header-logo-container">
+
+      <div class="header-title-container">
         <a href="/">
-          <img src="" alt="Global Contracts Logo" />
+          <h1>Global Contracts</h1>
+          <h2>Malum necessarium</h2>
         </a>
       </div>
+      
       <nav>
         <ul>
 
           {% if user.is_authenticated %} <!-- Conditional based on if user is logged in or not -->
 
-          <li><a href="{% url 'about' %}">About our organization</a></li>
-          <li><a href="{% url 'agent-index' %}">View your agents</a></li>
-          <li><a href="{% url 'agent-create' %}">Create an agent</a></li>
+          <div class="links-card">
+            <li><a href="{% url 'about' %}">About our organization</a></li>
+          </div>
 
-          <li><a href="{% url 'gadget-index' %}">View your gadgets</a></li>
-          <li><a href="{% url 'gadget-create' %}">Create a gadget</a></li>
+          <div class="links-card">
+            <li><a href="{% url 'agent-index' %}">View your agents</a></li>
+            <li><a href="{% url 'agent-create' %}">Create an agent</a></li>
+          </div>
 
-          <li><a href="{% url 'mission-index' %}">View missions (No mission model yet)</a></li>
-          <li><a href="/">Create an mission (No mission model yet)</a></li> {% comment %} mission-create {% endcomment %}
+          <div class="links-card">
+            <li><a href="{% url 'gadget-index' %}">View your gadgets</a></li>
+            <li><a href="{% url 'gadget-create' %}">Create a gadget</a></li>
+          </div>
+
+          <div class="links-card">
+            <li><a href="{% url 'mission-index' %}">View missions (No mission model yet)</a></li>
+            <li><a href="/">Create an mission (No mission model yet)</a></li> {% comment %} mission-create {% endcomment %}
+          </div>
 
           <!-- Logout -->
           <li>
-            <form id="logout-form" method="post" action="{% url 'logout' %}">
+            <form class="links-card" id="logout-form" method="post" action="{% url 'logout' %}">
               {% csrf_token %}
               <button type="submit">Log out</button>
             </form>
           </li>
 
           {% else %}
-          <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="{% url 'home' %}">Login</a></li>
-          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          <div class="links-card">
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'home' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          </div>
           {% endif %}
         </ul>
       </nav>
