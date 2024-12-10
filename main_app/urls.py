@@ -39,11 +39,13 @@ urlpatterns = [
     # path('missions/<int:pk>/update/', views.MissionUpdate.as_view(), name='mission-update'),
     # path('missions/<int:pk>/delete/', views.MissionDelete.as_view(), name='mission-delete'),
     
-    # Agent-Gadget Association/removal routes
-    # path('agents/<int:agent_id>/associate-gadget/<int:gadget_id>/', views.associate_gadget, name='associate-gadget'),
-    # path('agents/<int:agent_id>/remove-gadget/<int:gadget_id>/', views.remove_gadget, name='remove-gadget'),
+    # Association/Removal routes
     
-    # # Agent-Mission Association/removal routes
+    # Agent-Gadget Association/removal
+    path('agents/<int:agent_id>/associate-gadget/<int:gadget_id>/', views.associate_gadget, name='associate-gadget'),
+    path('agents/<int:agent_id>/remove-gadget/<int:gadget_id>/', views.remove_gadget, name='remove-gadget'),
+    
+    # # Agent-Mission Association/removal
     # path('agents/<int:agent_id>/associate-mission/<int:mission_id>/', views.associate_mission, name='associate-mission'),
     # path('agents/<int:agent_id>/remove-mission/<int:mission_id>/', views.remove_mission, name='remove-mission'),
     

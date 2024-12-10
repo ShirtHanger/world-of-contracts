@@ -42,8 +42,10 @@ def agent_index(request):
 @login_required
 def agent_detail(request, agent_id):
     agent = Agent.objects.get(id=agent_id)
+    gadgets = Gadget.objects.all()
     return render(request, 'agents/agent_detail.html', {
-        'agent': agent
+        'agent': agent,
+        'gadgets': gadgets,
         })
     
 @login_required
@@ -145,3 +147,56 @@ class GadgetUpdate(LoginRequiredMixin, UpdateView):
 class GadgetDelete(LoginRequiredMixin, DeleteView):
     model = Gadget
     success_url = '/gadgets/'
+    
+class GadgetList(LoginRequiredMixin, ListView):
+    model = Gadget
+
+class GadgetDetail(LoginRequiredMixin, DetailView):
+    model = Gadget
+    
+# Mission CRUD (TBA)
+
+# class MissionCreate(LoginRequiredMixin, CreateView):
+#     model = Mission
+#     fields = '__all__'
+
+# class MissionUpdate(LoginRequiredMixin, UpdateView):
+#     model = Mission
+#     fields = '__all__'
+
+# class MissionDelete(LoginRequiredMixin, DeleteView):
+#     model = Mission
+#     success_url = '/missions/'
+    
+    
+""" Associate/Removal functions"""
+
+# Agent-Gadget association and removal
+@login_required
+def associate_gadget(request, agent_id, gadget_id):
+    # Note that you can pass a gadget's id instead of the whole object
+    Agent.objects.get(id=agent_id).gadgets.add(gadget_id)
+    return redirect('agent-detail', agent_id=agent_id)
+
+@login_required
+def remove_gadget(request, agent_id, gadget_id):
+    # Look up the agent
+    # Look up the gadget
+    # Remove the gadget from the agent
+    Agent.objects.get(id=agent_id).gadgets.remove(gadget_id)
+    return redirect('agent-detail', agent_id=agent_id)
+
+# Agent-Mission association and removal
+# @login_required
+# def associate_mission(request, agent_id, mission_id):
+#     # Note that you can pass a mission's id instead of the whole object
+#     Agent.objects.get(id=agent_id).missions.add(mission_id)
+#     return redirect('agent-detail', agent_id=agent_id)
+
+# @login_required
+# def remove_mission(request, agent_id, mission_id):
+#     # Look up the agent
+#     # Look up the mission
+#     # Remove the mission from the agent
+#     Agent.objects.get(id=agent_id).missions.remove(mission_id)
+#     return redirect('agent-detail', agent_id=agent_id)

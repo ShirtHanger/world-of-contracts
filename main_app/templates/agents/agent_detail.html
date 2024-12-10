@@ -55,16 +55,50 @@
   <!-- Agent gadgets -->
   <section class="gadgets">
     <div class="subsection-title">
-      <h2>{{ agent.code_name }}'s Gadgets</h2>
-      <img
-        src=""
-        alt="An ice cream cone agent"
-      />
-      <img src="" alt="A agent as onigiri" />
-      <img
-        src=""
-        alt="A kabob of agents"
-      />
+      <h2>Armory</h2>
+
+    </div>
+
+    <h3>{{ agent.code_name }}'s Gadgets</h3>
+    <div class="subsection-content">
+      {% if agent.gadgets.count %} 
+        {% for gadget in agent.gadgets.all %}
+          <div class="gadget-container">
+            <a href="{% url 'gadget-detail' gadget.id %}">
+              <p>{{ gadget.name }} - <small>{{ gadget.get_type_display }}</small></p>
+            </a>
+            <!-- Remove gadget from agent -->
+            <form action="{% url 'remove-gadget' agent.id gadget.id %}" method="post"> <!-- Both IDs provided, seperate via space -->
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Remove Gadget</button>
+            </form>
+          </div>
+        {% endfor %} 
+      {% else %}
+        <p class="no-gadgets">{{agent.code_name}} is unequipped! They may not need any gadgets!</p>
+      {% endif %}
+    </div>
+
+    <h3>Available Gadgets</h3>
+    <div class="subsection-content">
+      {% if gadgets.count %} 
+        {% for gadget in gadgets.all %}
+          <div class="gadget-container">
+            <a href="{% url 'gadget-detail' gadget.id %}">
+              <p>{{ gadget.name }} - <small>{{ gadget.get_type_display }}</small></p>
+            </a>
+
+            <!-- Give gadget to agent -->
+            <form action="{% url 'associate-gadget' agent.id gadget.id %}" method="post"> <!-- Both IDs provided, seperate via space -->
+              {% csrf_token %}
+              <button type="submit" class="btn submit">Give gadget</button>
+            </form>
+            
+          </div>
+        {% endfor %} 
+      {% else %}
+        <p class="all-gadgets">{{agent.code_name}} is equipped with all availabele gadgets</p>
+      {% endif %}
     </div>
 
 

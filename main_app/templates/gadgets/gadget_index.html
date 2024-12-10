@@ -19,21 +19,14 @@
       <!-- Hard coded URLS (<a href="/gadgets/{{ gadget.id }}">) not reccomended -->
       <a href="{% url 'gadget-detail' gadget.id %}">
         <div class="card-content">
-          <div class="card-img-container">
-            <img
-              src=""
-              alt="Render image based on gadget type maybe"
-            />
-          </div>
           <!-- 
           Double curly braces means page is rendering PYTHON syntax, like react 
           -->
           <h2 class="card-title"> [#{{ gadget.id }}] - {{ gadget.name }}</h2>
-          <h3>{{ gadget.tagline }}</h3>
           
-          <p>({{ gadget.get_type_display }} gadget)</p>
-          
-          <h6>(Manufactured by {{ gadget.manufacturer }})</h6> 
+          <p><small>{{ gadget.get_type_display }}</small></p>
+
+          <h3>{{ gadget.tagline }}</h3> 
 
           <!-- Update and delete gadget -->
           <div class="gadget-actions">

@@ -194,7 +194,7 @@ class Agent(models.Model):
     
     # missions = models.ManyToManyField(Mission) # Must define mission above agent for this to work
     
-    # gadgets = models.ManyToManyField(Gadget) # Must define gadget above agent for this to work
+    gadgets = models.ManyToManyField(Gadget) # Must define gadget above agent for this to work
     
     # Override class object nonsense, just return the agent's code name and their type
     def __str__(self):

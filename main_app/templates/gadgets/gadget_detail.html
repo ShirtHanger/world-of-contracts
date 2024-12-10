@@ -5,14 +5,16 @@
 {% endblock %} 
 {% block content %}
 
-<div class="card"">
-  <div class="card-bg""></div>
+<div class="card">
+
   <div class="card-content">
     <h2>{{ gadget.name }}</h2>
-    <h3>({{ gadget.get_type_display }} gadget)</h3>
+    <h3>{{ gadget.tagline }}</h3>
+    <small>{{ gadget.get_type_display }}</small>
     <p>{{gadget.description}}</p>
     <h6>(Manufactured by {{ gadget.manufacturer }})</h6>
   </div>
+  
 </div>
 
 <!-- Update and delete gadget -->
