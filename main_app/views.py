@@ -18,7 +18,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 
 # Import Models
-from .models import Agent#, Gadget, Mission
+from .models import Agent, Gadget#, Mission
 # Import form for new skills for agent
 #from .forms import SkillForm
 
@@ -45,17 +45,19 @@ def agent_detail(request, agent_id):
     return render(request, 'agents/agent_detail.html', {
         'agent': agent
         })
-
     
 @login_required
 def gadget_index(request):
     # Placeholder HTML response
-    return render(request, 'gadgets/gadget_index.html')
+    gadgets = Gadget.objects.all() 
+    return render(request, 'gadgets/gadget_index.html', {'gadgets': gadgets})
     
 @login_required
-def gadget_detail(request):
-    # Placeholder HTML response
-    return render(request, 'gadgets/gadget_detail.html')
+def gadget_detail(request, gadget_id):
+    gadget = Gadget.objects.get(id=gadget_id)
+    return render(request, 'gadgets/gadget_detail.html', {
+        'gadget': gadget
+        })
     
 @login_required
 def mission_index(request):
@@ -90,6 +92,8 @@ def signup(request):
 
 
 """ These will automatically handle CRUD form logic! """
+
+""" AGENT CRUD """
 class AgentCreate(LoginRequiredMixin, CreateView):
     model = Agent
     fields = '__all__' # Shows form of all properties, including owned user
@@ -119,3 +123,25 @@ class AgentUpdate(LoginRequiredMixin, UpdateView):
 class AgentDelete(LoginRequiredMixin, DeleteView):
     model = Agent
     success_url = '/agents/'
+    
+""" GADGET CRUD """
+
+class GadgetList(LoginRequiredMixin, ListView):
+    model = Gadget
+
+class GadgetDetail(LoginRequiredMixin, DetailView):
+    model = Gadget
+    
+# Gadget CRUD
+
+class GadgetCreate(LoginRequiredMixin, CreateView):
+    model = Gadget
+    fields = '__all__'
+
+class GadgetUpdate(LoginRequiredMixin, UpdateView):
+    model = Gadget
+    fields = '__all__'
+
+class GadgetDelete(LoginRequiredMixin, DeleteView):
+    model = Gadget
+    success_url = '/gadgets/'

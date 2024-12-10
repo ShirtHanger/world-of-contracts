@@ -1,0 +1,39 @@
+<!-- Solid Snake -->
+        <h3>Stealth Camouflage</h3>
+        <p>Equipment</p>
+
+        <!-- Agent 47 -->
+        <h3>ICA Silverballer</h3>
+        <p>Weapon</p>
+
+        <!-- Natasha Romanoff -->
+        <h3>Widow's Bite</h3>
+        <p>Weapon</p>
+
+        <!-- Jason Bourne -->
+        <h3>Encrypted Communication Watch</h3>
+        <p>Equipment</p>
+
+        <!-- Ethan Hunt -->
+        <h3>Face Mask Generator</h3>
+        <p>Equipment</p>
+
+        <!-- Sam Fisher -->
+        <h3>Trifocal Goggles</h3>
+        <p>Equipment</p>
+
+        <!-- Lorraine Broughton -->
+        <h3>Concealed Blade Heels</h3>
+        <p>Weapon</p>
+
+        <!-- John Wick -->
+        <h3>Taran Tactical Combat Handgun</h3>
+        <p>Weapon</p>
+
+        <!-- Carmen Sandiego -->
+        <h3>Grappling Hook</h3>
+        <p>Equipment</p>
+
+        <!-- Jack Ryan -->
+        <h3>Portable Surveillance Kit</h3>
+        <p>Equipment</p>

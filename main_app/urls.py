@@ -25,11 +25,11 @@ urlpatterns = [
     
     # Gadget Routes
     path('gadgets/', views.gadget_index, name='gadget-index'),
-    path('gadgets/detail/', views.gadget_detail, name='gadget-detail'), # Gadget details, collects by ID.
+    path('gadgets/<int:gadget_id>/', views.gadget_detail, name='gadget-detail'), # Gadget details, collects by ID.
     
-    # path('gadgets/create/', views.GadgetCreate.as_view(), name='gadget-create'),
-    # path('gadgets/<int:pk>/update/', views.GadgetUpdate.as_view(), name='gadget-update'),
-    # path('gadgets/<int:pk>/delete/', views.GadgetDelete.as_view(), name='gadget-delete'),
+    path('gadgets/create/', views.GadgetCreate.as_view(), name='gadget-create'),
+    path('gadgets/<int:pk>/update/', views.GadgetUpdate.as_view(), name='gadget-update'),
+    path('gadgets/<int:pk>/delete/', views.GadgetDelete.as_view(), name='gadget-delete'),
     
     # Mission Routes
     path('missions/', views.mission_index, name='mission-index'),

@@ -1,52 +1,57 @@
 {% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/gadgets/gadget-index.css' %}"/>
+{% endblock %} 
 {% block content %}
-<h1>Your Gadgets</h1>
-<hr />
-<p class="page-content">
 
-    <h2> YOUR GADGETS </h2>
+<section class="page-header">
+  <h1>Your Gadget List</h1>
+  <img src="" alt="Sunglasses! Put sun glasses!" />
+  <img src="" alt="A dagger probably" />
+  <img src="" alt="A gun maybe" />
+  <img src="" alt="Some roman symbol" />
+</section>
 
-    <h1><a href="{% url 'gadget-detail' %}"> TEST DETAIL PAGE</a></h1>
+<section class="card-container">
+  {% for gadget in gadgets %} <!-- For loop, maps all gadget data -->
+    <div class="card">
+      <!-- Hard coded URLS (<a href="/gadgets/{{ gadget.id }}">) not reccomended -->
+      <a href="{% url 'gadget-detail' gadget.id %}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img
+              src=""
+              alt="Render image based on gadget type maybe"
+            />
+          </div>
+          <!-- 
+          Double curly braces means page is rendering PYTHON syntax, like react 
+          -->
+          <h2 class="card-title"> [#{{ gadget.id }}] - {{ gadget.name }}</h2>
+          <h3>{{ gadget.tagline }}</h3>
+          
+          <p>({{ gadget.get_type_display }} gadget)</p>
+          
+          <h6>(Manufactured by {{ gadget.manufacturer }})</h6> 
 
-        <!-- Solid Snake -->
-        <h3>Stealth Camouflage</h3>
-        <p>Equipment</p>
+          <!-- Update and delete gadget -->
+          <div class="gadget-actions">
+            <a href="{% url 'gadget-update' gadget.id %}" class="btn warn">Edit</a>
+            <a href="{% url 'gadget-delete' gadget.id %}" class="btn danger">Delete</a>
+          </div>
+          
+    
 
-        <!-- Agent 47 -->
-        <h3>ICA Silverballer</h3>
-        <p>Weapon</p>
+           <!-- Conditional rendering -->
+          <!-- {% if gadget.property %} -->
+          <!-- {% else %} -->
+          <!-- {% endif %} Stops If/Else blocks  -->
 
-        <!-- Natasha Romanoff -->
-        <h3>Widow's Bite</h3>
-        <p>Weapon</p>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</section>
 
-        <!-- Jason Bourne -->
-        <h3>Encrypted Communication Watch</h3>
-        <p>Equipment</p>
-
-        <!-- Ethan Hunt -->
-        <h3>Face Mask Generator</h3>
-        <p>Equipment</p>
-
-        <!-- Sam Fisher -->
-        <h3>Trifocal Goggles</h3>
-        <p>Equipment</p>
-
-        <!-- Lorraine Broughton -->
-        <h3>Concealed Blade Heels</h3>
-        <p>Weapon</p>
-
-        <!-- John Wick -->
-        <h3>Taran Tactical Combat Handgun</h3>
-        <p>Weapon</p>
-
-        <!-- Carmen Sandiego -->
-        <h3>Grappling Hook</h3>
-        <p>Equipment</p>
-
-        <!-- Jack Ryan -->
-        <h3>Portable Surveillance Kit</h3>
-        <p>Equipment</p>
-
-</p>
 {% endblock %}

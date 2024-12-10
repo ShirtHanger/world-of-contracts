@@ -98,8 +98,10 @@ MISSION_TYPES = (
 
 # Gadget Limits
 GADGET_TYPES = (
+    ('V', 'Versatile Gadget'),
     ('T', 'Tracking'),
-    ('W', 'Weapon'),
+    ('W', 'Melee Weapon'),
+    ('F', 'Firearm'),
     ('H', 'Hacking'),
     ('S', 'Surveillance'),
     ('E', 'Explosive'),
@@ -114,6 +116,29 @@ GADGET_TYPES = (
 
 
 
+# Gadget model, many-to-many with agents. Defined above agent so code will work
+class Gadget(models.Model):
+    name = models.CharField(max_length=100)
+    tagline = models.CharField(max_length=250)
+    
+    description = models.TextField(max_length=1000)
+    
+    type = models.CharField(
+        max_length=1, 
+        choices=GADGET_TYPES,
+        # Default = Flexible
+        default=GADGET_TYPES[0][0]
+    )
+    
+    manufacturer = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'({self.name} - {self.get_type_display()})'
+
+    # Method gets the URL for a particular gadget instance
+    def get_absolute_url(self):
+        return reverse('gadget-detail', kwargs={'pk': self.id})
+
 
 # Consider adding:
 # Signature gadget (Seperate from gadgets model)
@@ -122,6 +147,7 @@ GADGET_TYPES = (
     # James Bond's' Vodka Martini, Shaken not stired'
     # Adversary (Optional, conditional render)
 
+""" MAIN MODEL - Agents """
 class Agent(models.Model):
     code_name = models.CharField(max_length=100)
     real_name = models.CharField(max_length=100, default=expunge_data())
@@ -150,7 +176,7 @@ class Agent(models.Model):
     region = models.CharField(max_length=100, default=expunge_data())
 
     
-    tagline = models.TextField(max_length=250)
+    tagline = models.CharField(max_length=250)
     description = models.TextField(max_length=1000, default=expunge_data())
     
     previous_agency = models.CharField(max_length=100, default=expunge_data())
@@ -172,7 +198,7 @@ class Agent(models.Model):
     
     # Override class object nonsense, just return the agent's code name and their type
     def __str__(self):
-        return f'{self.code_name} - the {self.get_experience_level_display()} {self.get_agent_type_display()}'
+        return f'{self.code_name}: The {self.get_experience_level_display()} {self.get_agent_type_display()}'
     
     # Method gets the URL for a particular agent instance
     def get_absolute_url(self):
