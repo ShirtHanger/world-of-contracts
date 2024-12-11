@@ -52,7 +52,7 @@
       <a href="{% url 'gadget-delete' gadget.id %}" class="btn danger">Delete</a>
     </div>
     {% else %}
-        <p>Gadget file by {{user.username}}</p>
+        <p>Gadget file by {{gadget.user.username}}</p>
     {% endif %}
 
   </div>

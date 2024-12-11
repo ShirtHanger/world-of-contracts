@@ -42,10 +42,10 @@ def agent_index(request):
 @login_required
 def agent_detail(request, agent_id):
     agent = Agent.objects.get(id=agent_id)
-    gadgets = Gadget.objects.all()
+    gadgets_agent_doesnt_own = Gadget.objects.exclude(id__in = agent.gadgets.all().values_list('id')) # Fetch gadgets this agent DOESNT have
     return render(request, 'agents/agent_detail.html', {
         'agent': agent,
-        'gadgets': gadgets,
+        'gadgets': gadgets_agent_doesnt_own,
         })
     
 @login_required
@@ -71,10 +71,11 @@ def mission_index(request):
 @login_required
 def mission_detail(request, mission_id):
     mission = Mission.objects.get(id=mission_id)
-    agents = Agent.objects.all() 
+    # agents = Agent.objects.all() 
+    unassigned_agents = Agent.objects.exclude(id__in = mission.agents.all().values_list('id')) # Fetch agents this mission DOESNT have
     return render(request, 'missions/mission_detail.html', {
         'mission': mission,
-        'agents': agents
+        'agents': unassigned_agents
         })
     # Placeholder HTML response
     return render(request, 'missions/mission_detail.html')

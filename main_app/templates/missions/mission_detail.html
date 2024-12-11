@@ -57,7 +57,7 @@
       <a href="{% url 'mission-delete' mission.id %}" class="btn danger">Delete</a>
     </div>
     {% else %}
-      <p>Mission file by {{user.username}}</p>
+      <p>Mission file by {{mission.user.username}}</p>
     {% endif %}
 
     <!-- Items associated with this specific mission -->

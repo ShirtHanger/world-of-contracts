@@ -133,6 +133,8 @@ class Gadget(models.Model):
     )
     
     manufacturer = models.CharField(max_length=100)
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE) # User that created gadget
 
     def __str__(self):
         return f'({self.name} - {self.get_type_display()})'
@@ -231,6 +233,8 @@ class Mission (models.Model):
         default=MISSION_TYPES[0][0]
     )
     date = models.DateField()  # Consider removing if issues with code
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE) # User that created mission
 
     def __str__(self):
         return f"{self.code_name} - {self.get_mission_type_display()} - {self.location} ({self.get_urgency_display()})"

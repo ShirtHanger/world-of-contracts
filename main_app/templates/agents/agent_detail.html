@@ -76,7 +76,7 @@
       <a href="{% url 'agent-delete' agent.id %}" class="btn danger">Delete</a>
     </div>
     {% else %}
-        <p>Agent file by {{user.username}}</p>
+        <p>Agent file by {{agent.user.username}}</p>
     {% endif %}
     
     
@@ -104,6 +104,7 @@
             <a href="{% url 'gadget-detail' gadget.id %}">
               <p class="object-title">{{ gadget.name }} - <small>{{ gadget.get_type_display }}</small></p>
             </a>
+            <p></p>
             <!-- Remove gadget from agent -->
             <form action="{% url 'remove-gadget' agent.id gadget.id %}" method="post"> <!-- Both IDs provided, seperate via space -->
               {% csrf_token %}
