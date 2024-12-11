@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
 {% load static %} 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/agents/agent-detail.css' %}" />
+<link rel="stylesheet" href="{% static 'css/detail.css' %}" />
 {% endblock %} 
 {% block content %}
 
@@ -9,15 +9,19 @@
   
   <div class="object-details">
 
+    <h1 class="object-title">Operation - {{ mission.code_name }}</h1>
+
     <div class="info-stats-container">
 
       <section class="info-container">
-        <h1 class="object-title">{{ mission.code_name }}</h1>
+
+        <h3 class="object-title"> Mission Objective</h3>
+        
         <ul>
           <div class="links-card">
             <li>{{ mission.get_urgency_display }}</li>
             <li>{{ mission.get_mission_type_display }}</li>
-            <li>{{ mission.location }}</li>
+            <h3><small>{{ mission.objective }}</small></h3>
           </div>
         </ul>
         
@@ -31,10 +35,10 @@
           <ul>
             <div class="links-card">
               <li>Client: {{ mission.client }}</li>
+              <li>{{ mission.location }}</li>
               <li>Date: {{ mission.date }}</li>
             </div>
           </ul>
-          <h3><small>{{ mission.objective }}</small></h3>
         </div>
           
       </section>

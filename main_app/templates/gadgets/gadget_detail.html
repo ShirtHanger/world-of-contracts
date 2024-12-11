@@ -9,14 +9,17 @@
   
   <div class="object-details">
 
+    <h1 class="object-title">{{ gadget.name }}</h1>
+    <h3>{{ gadget.tagline }}</h3>
+
     <div class="info-stats-container">
 
       <section class="info-container">
-        <h1 class="object-title">{{ gadget.name }}</h1>
-        <h2><small>[{{ gadget.manufacturer }}]</small></h2>
+        
+        <h2 class="object-title">Origin</h2>
         <ul>
           <div class="links-card">
-            <li>{{ gadget.tagline }}</li>
+            <li>[{{ gadget.manufacturer }}]</li>
             
           </div>
         </ul>

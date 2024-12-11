@@ -4,7 +4,7 @@
 {% extends 'base.html' %} 
 {% load static %} 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/agents/agent-detail.css' %}" />
+<link rel="stylesheet" href="{% static 'css/detail.css' %}" />
 {% endblock %} 
 {% block content %}
 
@@ -12,10 +12,15 @@
   
   <div class="object-details">
 
+    <h1 class="object-title">Agent {{ agent.code_name }}</h1>
+    <h3>{{ agent.tagline }}</h3>
+
     <div class="info-stats-container">
 
       <section class="info-container">
-        <h1 class="object-title">{{ agent.code_name }}</h1>
+
+        <h3 class="object-title"> Asset Details </h3>
+        
         <ul>
           <div class="links-card">
             <li>{{ agent.get_agent_type_display }}</li>
@@ -23,7 +28,7 @@
             <li>{{ agent.previous_agency }}</li>
           </div>
         </ul>
-        <h3><small>{{ agent.tagline }}</small></h3>
+        
       </section> 
   
   
