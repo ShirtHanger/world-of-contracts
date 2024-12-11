@@ -18,9 +18,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 
 # Import Models
-from .models import Agent, Gadget#, Mission
+from .models import Agent, Gadget, Mission
 # Import form for new skills for agent
-#from .forms import SkillForm
+from .forms import MissionForm#, SkillForm
 
 
 def home(request):
@@ -63,11 +63,19 @@ def gadget_detail(request, gadget_id):
     
 @login_required
 def mission_index(request):
+    missions = Mission.objects.all() 
+    return render(request, 'missions/mission_index.html', {'missions': missions})
     # Placeholder HTML response
     return render(request, 'missions/mission_index.html')
     
 @login_required
-def mission_detail(request):
+def mission_detail(request, mission_id):
+    mission = Mission.objects.get(id=mission_id)
+    agents = Agent.objects.all() 
+    return render(request, 'missions/mission_detail.html', {
+        'mission': mission,
+        'agents': agents
+        })
     # Placeholder HTML response
     return render(request, 'missions/mission_detail.html')
     
@@ -126,7 +134,7 @@ class AgentDelete(LoginRequiredMixin, DeleteView):
     model = Agent
     success_url = '/agents/'
     
-""" GADGET CRUD """
+""" GADGET Display """
 
 class GadgetList(LoginRequiredMixin, ListView):
     model = Gadget
@@ -148,25 +156,29 @@ class GadgetDelete(LoginRequiredMixin, DeleteView):
     model = Gadget
     success_url = '/gadgets/'
     
-class GadgetList(LoginRequiredMixin, ListView):
-    model = Gadget
+# Mission Display
 
-class GadgetDetail(LoginRequiredMixin, DetailView):
-    model = Gadget
+class MissionList(LoginRequiredMixin, ListView):
+    model = Mission
+
+class MissionDetail(LoginRequiredMixin, DetailView):
+    model = Mission
     
-# Mission CRUD (TBA)
+# Mission CRUD
 
-# class MissionCreate(LoginRequiredMixin, CreateView):
-#     model = Mission
-#     fields = '__all__'
+class MissionCreate(LoginRequiredMixin, CreateView):
+    model = Mission
+    # fields = '__all__'
+    form_class = MissionForm
 
-# class MissionUpdate(LoginRequiredMixin, UpdateView):
-#     model = Mission
-#     fields = '__all__'
+class MissionUpdate(LoginRequiredMixin, UpdateView):
+    model = Mission
+    # fields = '__all__'
+    form_class = MissionForm
 
-# class MissionDelete(LoginRequiredMixin, DeleteView):
-#     model = Mission
-#     success_url = '/missions/'
+class MissionDelete(LoginRequiredMixin, DeleteView):
+    model = Mission
+    success_url = '/missions/'
     
     
 """ Associate/Removal functions"""

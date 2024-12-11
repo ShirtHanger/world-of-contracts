@@ -76,6 +76,7 @@ AGENT_RACES = (
 
 # Mission Limits
 MISSION_URGENCIES = (
+    ('R', REDACTED_LABEL), # Redacted default value
     ('T', 'Trivial'),
     ('L', 'Low Priority'),
     ('M', 'Medium Priority'),
@@ -84,6 +85,7 @@ MISSION_URGENCIES = (
     ('E', 'Emergency'),
 )
 MISSION_TYPES = (
+    ('U', 'Unspecified'), # Redacted default value
     ('R', 'Reconnaissance'),
     ('E', 'Extraction'),
     ('A', 'Assassination'),
@@ -204,3 +206,42 @@ class Agent(models.Model):
     def get_absolute_url(self):
         # Use the 'reverse' function to dynamically find the URL for viewing this agent's details
         return reverse('agent-detail', kwargs={'agent_id': self.id})
+
+
+class Mission (models.Model):
+    
+    code_name = models.CharField(max_length=255)
+    debrief = models.TextField(max_length=7000, default=expunge_data()) # Make these very, very long and descriptive
+    location = models.CharField(max_length=255, default=expunge_data()) 
+    # agents = models.ManyToManyField(Agent) # Must define agent above mission for this to work
+    objective = models.CharField(max_length=255, default=expunge_data())
+    
+    urgency = models.CharField( # Limited choices
+        max_length=1, 
+        choices=MISSION_URGENCIES,
+        # Default = Trivial
+        default=MISSION_URGENCIES[0][0]
+    ) 
+    
+    client = models.CharField(max_length=255)  
+    mission_type = models.CharField( # Limited choices
+        max_length=1, 
+        choices=MISSION_TYPES,
+        # Default = Unspecified
+        default=MISSION_TYPES[0][0]
+    )
+    date = models.DateField()  # Consider removing if issues with code
+
+    def __str__(self):
+        return f"{self.code_name} - {self.get_mission_type_display()} - {self.location} ({self.get_urgency_display()})"
+    
+    # Method gets the URL for a particular mission instance
+    def get_absolute_url(self):
+        # Use the 'reverse' function to dynamically find the URL for viewing this mission's details
+        return reverse('mission-detail', kwargs={'mission_id': self.id})
+    
+    class Meta:
+        ordering = ['-date']
+        
+        
+# end 

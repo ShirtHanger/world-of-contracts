@@ -1,63 +1,40 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+{% endblock %}
 {% block content %}
-<h1>Your Missions</h1>
-<hr />
-<p class="page-content">
 
-    <h2> YOUR MISSIONS </h2>
+<section class="page-header">
+    <h1>Your Mission List</h1>
+    <img src="" alt="Sunglasses! Put sun glasses!" />
+    <img src="" alt="A dagger probably" />
+    <img src="" alt="A gun maybe" />
+    <img src="" alt="Some roman symbol" />
+  </section>
 
-    <h1><a href="{% url 'mission-detail' %}"> TEST DETAIL PAGE</a></h1>
+<section class="card-container">
+  {% for mission in missions %}
+    <article class="card">
+      <div class="card-title">
+        <a href="{% url 'mission-detail' mission.id %}">
+          <h2>[{{ mission.code_name }}]</h2>
+        </a>
+      </div>
 
-        <h3>Shadow Moses Incident</h3>
-        <h4>Counter Rebellion</h4>
-        <h4>Location: Fox Archipelago</h4>
-        <h5>Agent(s): Solid Snake</h5>
+      <div class="card-data-preview">
+        <h3>{{ mission.get_urgency_display }} - {{ mission.get_mission_type_display }}</h3>
+        <p>[{{ mission.location }}]</p>
 
-        <h3>The Finish Line</h3>
-        <h4>Assassination</h4>
-        <h4>Location: Miami, Florida</h4>
-        <h4>Agent(s): Agent 47</h4>
+        <small>Mission File ID #{{ mission.id }}</small>
 
-        <h3>Red Room Escape</h3>
-        <h4>Espionage</h4>
-        <h4>Location: Moscow, Russia</h4>
-        <h5>Agent(s): Natasha Romanoff</h5>
+        <div class="card-actions">
+          <a href="{% url 'mission-update' mission.id %}" class="btn warn">Edit</a>
+          <a href="{% url 'mission-delete' mission.id %}" class="btn danger">Delete</a>
+        </div>
+      </div>
+    </article>
+  {% endfor %}
+</section>
 
-        <h3>Treadstone Unveiling</h3>
-        <h4>Counterintelligence</h4>
-        <h4>Location: Zurich, Switzerland</h4>
-        <h5>Agent(s): Jason Bourne</h5>
-
-        <h3>Mission: Breakout</h3>
-        <h4>Covert Operations</h4>
-        <h4>Location: Langley, Virginia</h4>
-        <h5>Agent(s): Ethan Hunt</h5>
-
-        <h3>Blacklist Extraction</h3>
-        <h4>Infiltration</h4>
-        <h4>Location: Benghazi, Libya</h4>
-        <h5>Agent(s): Sam Fisher</h5>
-
-        <h3>Berlin Undercover</h3>
-        <h4>Espionage</h4>
-        <h4>Location: Berlin, Germany</h4>
-        <h5>Agent(s): Lorraine Broughton</h5>
-
-        <h3>Continental Revenge</h3>
-        <h4>Retaliation</h4>
-        <h4>Location: New York City, USA</h4>
-        <h5>Agent(s): John Wick</h5>
-
-        <h3>Royal Jewel Heist</h3>
-        <h4>Theft & Espionage</h4>
-        <h4>Location: London, England</h4>
-        <h5>Agent(s): Carmen Sandiego</h5>
-
-        <h3>Capitol Conspiracy</h3>
-        <h4>Analysis & Fieldwork</h4>
-        <h4>Location: Washington, D.C., USA</h4>
-        <h5>Agent(s): Jack Ryan</h5>
-
-
-</p>
 {% endblock %}

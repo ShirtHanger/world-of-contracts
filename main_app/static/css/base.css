@@ -29,7 +29,7 @@ ul {
     border: 0.1vw inset tomato;
     /* margin: 2vw; */
     padding: 2vw;
-    transition: background-color ease 0.5s;
+    transition: background-color ease-in-out 0.5s;
 }
 
 .links-card:hover {
@@ -37,34 +37,28 @@ ul {
 }
 
 li {
-    transition: background-color ease 0.5s;
+    transition: background-color ease-in-out 0.5s;
 }
 
 li:hover {
     background-color: green;
 }
 
-button {
-    background-color: blue;
+button, .btn {
+    background-color: darkmagenta;
     border-color: yellow;
     border-style: groove;
     border-width: 0.1vw;
-    transition: transform 0.5s;
+    transition: transform 0.5s, background-color 0.5s ease-in-out;
+    margin: 2vw;
 }
 
 button:hover {
     transform: scale(1.3);
-}
-
-.btn {
-    background-color: blue;
-    border-color: yellow;
-    border-style: groove;
-    border-width: 0.1vw;
-    transition: transform 0.5s;
-    margin: 2vw;
+    background-color: goldenrod;
 }
 
 .btn:hover {
     transform: scale(1.3);
+    background-color: goldenrod;
 }

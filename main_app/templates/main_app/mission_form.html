@@ -8,12 +8,12 @@
 <div class="page-header">
   <!-- Check if a mission object exists to determine if we're editing or creating -->
   {% if mission %}
-    <h1>Edit {{ mission.name }}</h1>
-    <!-- This works too (<h1>Edit {{ object.name }}</h1>) -->
+    <h1>Edit {{ mission.code_name }}</h1>
+    <!-- This works too (<h1>Edit {{ object.code_name }}</h1>) -->
   {% else %}
     <h1>Create a Mission</h1>
   {% endif %}
-  <img src="" alt="A mission using a computer" />
+  <img src="" alt="A globe" />
 </div>
 
 <!-- No need to create a form! Handled by Django with this boilerplate! -->

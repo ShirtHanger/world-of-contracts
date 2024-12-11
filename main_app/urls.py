@@ -33,11 +33,11 @@ urlpatterns = [
     
     # Mission Routes
     path('missions/', views.mission_index, name='mission-index'),
-    path('missions/detail/', views.mission_detail, name='mission-detail'), # Mission details, collects by ID.
+    path('missions/<int:mission_id>/', views.mission_detail, name='mission-detail'), # Mission details, collects by ID.
     
-    # path('missions/create/', views.MissionCreate.as_view(), name='mission-create'),
-    # path('missions/<int:pk>/update/', views.MissionUpdate.as_view(), name='mission-update'),
-    # path('missions/<int:pk>/delete/', views.MissionDelete.as_view(), name='mission-delete'),
+    path('missions/create/', views.MissionCreate.as_view(), name='mission-create'),
+    path('missions/<int:pk>/update/', views.MissionUpdate.as_view(), name='mission-update'),
+    path('missions/<int:pk>/delete/', views.MissionDelete.as_view(), name='mission-delete'),
     
     # Association/Removal routes
     
