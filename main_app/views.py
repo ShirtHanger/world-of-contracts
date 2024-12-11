@@ -20,7 +20,7 @@ from django.http import HttpResponse
 # Import Models
 from .models import Agent, Gadget, Mission
 # Import form for new skills for agent
-from .forms import MissionForm#, SkillForm
+from .forms import AgentForm, GadgetForm, MissionForm#, SkillForm
 
 
 def home(request):
@@ -107,7 +107,8 @@ def signup(request):
 """ AGENT CRUD """
 class AgentCreate(LoginRequiredMixin, CreateView):
     model = Agent
-    fields = '__all__' # Shows form of all properties, including owned user
+    # fields = '__all__'
+    form_class = AgentForm # Shows form of all properties, including owned user
     # Bottom excludes user
     # fields = ['code_name', 'real_name', 'agent_type', 'experience_level', 
     #           'gender', 'age', 'height_cm', 'weight_kg',
@@ -124,7 +125,8 @@ class AgentCreate(LoginRequiredMixin, CreateView):
     
 class AgentUpdate(LoginRequiredMixin, UpdateView):
     model = Agent
-    fields = '__all__'
+    # fields = '__all__'
+    form_class = AgentForm
     # Can disallow updating of a field by excluding it
     # fields = ['code_name', 'real_name', 'agent_type', 'experience_level', 
     #           'gender', 'age', 'height_cm', 'weight_kg',
@@ -147,11 +149,18 @@ class GadgetDetail(LoginRequiredMixin, DetailView):
 
 class GadgetCreate(LoginRequiredMixin, CreateView):
     model = Gadget
-    fields = '__all__'
+    # fields = '__all__'
+    form_class = GadgetForm
+    def form_valid(self, form):
+        # Automatically assign the logged in user (self.request.user)
+        form.instance.user = self.request.user  # form.instance is the gadget
+        # Let the CreateView do its job as usual
+        return super().form_valid(form)
 
 class GadgetUpdate(LoginRequiredMixin, UpdateView):
     model = Gadget
-    fields = '__all__'
+    # fields = '__all__'
+    form_class = GadgetForm
 
 class GadgetDelete(LoginRequiredMixin, DeleteView):
     model = Gadget
@@ -171,6 +180,11 @@ class MissionCreate(LoginRequiredMixin, CreateView):
     model = Mission
     # fields = '__all__'
     form_class = MissionForm
+    def form_valid(self, form):
+        # Automatically assign the logged in user (self.request.user)
+        form.instance.user = self.request.user  # form.instance is the mission
+        # Let the CreateView do its job as usual
+        return super().form_valid(form)
 
 class MissionUpdate(LoginRequiredMixin, UpdateView):
     model = Mission
