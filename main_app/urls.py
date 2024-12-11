@@ -45,9 +45,9 @@ urlpatterns = [
     path('agents/<int:agent_id>/associate-gadget/<int:gadget_id>/', views.associate_gadget, name='associate-gadget'),
     path('agents/<int:agent_id>/remove-gadget/<int:gadget_id>/', views.remove_gadget, name='remove-gadget'),
     
-    # # Agent-Mission Association/removal
-    # path('agents/<int:agent_id>/associate-mission/<int:mission_id>/', views.associate_mission, name='associate-mission'),
-    # path('agents/<int:agent_id>/remove-mission/<int:mission_id>/', views.remove_mission, name='remove-mission'),
+    # # Mission-Agent Association/removal
+    path('missions/<int:mission_id>/associate-agent/<int:agent_id>/', views.associate_agent, name='associate-agent'),
+    path('missions/<int:mission_id>/remove-agent/<int:agent_id>/', views.remove_agent, name='remove-agent'),
     
     # Sign up route
     path('accounts/signup/', views.signup, name='signup'),

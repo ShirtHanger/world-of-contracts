@@ -213,7 +213,7 @@ class Mission (models.Model):
     code_name = models.CharField(max_length=255)
     debrief = models.TextField(max_length=7000, default=expunge_data()) # Make these very, very long and descriptive
     location = models.CharField(max_length=255, default=expunge_data()) 
-    # agents = models.ManyToManyField(Agent) # Must define agent above mission for this to work
+    agents = models.ManyToManyField(Agent) # Must define agent above mission for this to work
     objective = models.CharField(max_length=255, default=expunge_data())
     
     urgency = models.CharField( # Limited choices

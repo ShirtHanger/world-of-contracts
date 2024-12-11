@@ -1,10 +1,111 @@
 {% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/agents/agent-detail.css' %}" />
+{% endblock %} 
 {% block content %}
-<h1>Mission Name Here</h1>
-<hr />
-<p class="page-content">
-    <h2>Against The Dark Knight<h2>
-    <h3>Debrief</h3>
-    <p>"Good evening 47, your target is billionare playboy, Bruce Wayne"</p>
-</p>
+
+<section class="agent-container">
+  
+  <div class="object-details">
+
+    <div class="info-stats-container">
+
+      <section class="info-container">
+        <h1 class="object-title">{{ mission.code_name }}</h1>
+        <ul>
+          <div class="links-card">
+            <li>{{ mission.get_urgency_display }}</li>
+            <li>{{ mission.get_mission_type_display }}</li>
+            <li>{{ mission.location }}</li>
+          </div>
+        </ul>
+        
+      </section> 
+  
+      <section class="stats-container">
+          
+        <div class="stat-card">
+          <h3 class="object-title">Mission Details</h3>
+  
+          <ul>
+            <div class="links-card">
+              <li>Client: {{ mission.client }}</li>
+              <li>Date: {{ mission.date }}</li>
+            </div>
+          </ul>
+          <h3><small>{{ mission.objective }}</small></h3>
+        </div>
+          
+      </section>
+
+    </div>
+
+    <article class="lore-container">
+      <p>{{ mission.debrief }}</p>
+    </article>
+
+    <!-- Update and delete mission -->
+     
+    <div class="card-actions">
+      <a href="{% url 'mission-update' mission.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'mission-delete' mission.id %}" class="btn danger">Delete</a>
+    </div>
+
+    <!-- Items associated with this specific mission -->
+<div class="agents-mission-container">
+
+    <!-- Mission agents -->
+    <section class="agents">
+      <div class="object-title">
+        <h2>Your assets</h2>
+      </div>
+  
+      <h3>Agents assigned to {{ mission.code_name }}</h3>
+      <div class="card-container">
+        {% if mission.agents.count %} 
+          {% for agent in mission.agents.all %}
+            <div class="card">
+              <a href="{% url 'agent-detail' agent.id %}">
+                <p class="object-title">{{ agent.code_name }} - <small>{{ agent.get_experience_level_display }} {{ agent.get_agent_type_display }}</small></p>
+              </a>
+              <!-- Remove agent from mission -->
+              <form action="{% url 'remove-agent' mission.id agent.id %}" method="post"> <!-- Both IDs provided, seperate via space -->
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Remove Agent</button>
+              </form>
+            </div>
+          {% endfor %} 
+        {% else %}
+          <p class="no-agents">No agents assigned to {{mission.code_name}}</p>
+        {% endif %}
+      </div>
+  
+      <h3 class="object-title">Available Agents</h3>
+      <div class="card-container">
+        {% if agents.count %} 
+          {% for agent in agents.all %}
+            <div class="card">
+              <a href="{% url 'agent-detail' agent.id %}">
+                <p class="object-title">{{ agent.code_name }} - <small>{{ agent.get_experience_level_display }} {{ agent.get_agent_type_display }}</small></p>
+              </a>
+  
+              <!-- Give agent to mission -->
+              <form action="{% url 'associate-agent' mission.id agent.id %}" method="post"> <!-- Both IDs provided, seperate via space -->
+                {% csrf_token %}
+                <button type="submit" class="btn submit">Assign agent</button>
+              </form>
+              
+            </div>
+          {% endfor %} 
+        {% else %}
+          <p class="all-agents">All agents have been assigned to {{mission.code_name}}</p>
+        {% endif %}
+      </div>
+  
+  
+    </section>
+
+</div>
+
 {% endblock %}

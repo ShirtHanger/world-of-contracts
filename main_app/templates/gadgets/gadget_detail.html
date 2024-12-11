@@ -1,24 +1,55 @@
 {% extends 'base.html' %} 
 {% load static %} 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/gadgets/gadget-detail.css' %}" />
+<link rel="stylesheet" href="{% static 'css/detail.css' %}" />
 {% endblock %} 
 {% block content %}
 
-<div class="card">
-
-  <div class="card-content">
-    <h2>{{ gadget.name }}</h2>
-    <h3>{{ gadget.tagline }}</h3>
-    <small>{{ gadget.get_type_display }}</small>
-    <p>{{gadget.description}}</p>
-    <h6>(Manufactured by {{ gadget.manufacturer }})</h6>
-  </div>
+<section class="agent-container">
   
-</div>
+  <div class="object-details">
 
-<!-- Update and delete gadget -->
-<a href="{% url 'gadget-update' gadget.id %}" class="btn warn">Edit</a>
-<a href="{% url 'gadget-delete' gadget.id %}" class="btn danger">Delete</a>
+    <div class="info-stats-container">
+
+      <section class="info-container">
+        <h1 class="object-title">{{ gadget.name }}</h1>
+        <h2><small>[{{ gadget.manufacturer }}]</small></h2>
+        <ul>
+          <div class="links-card">
+            <li>{{ gadget.tagline }}</li>
+            
+          </div>
+        </ul>
+      </section> 
+  
+      <section class="stats-container">
+          
+        <div class="stat-card">
+          <h3 class="object-title">Details</h3>
+          <ul>
+            <div class="links-card">
+              <li> {{gadget.get_type_display}} </li>
+              <li> File #{{gadget.id}} </li>
+            </div>
+          </ul>
+        </div>
+          
+      </section>
+
+    </div>
+
+    <article class="lore-container">
+      <p>{{ gadget.description }}</p>
+    </article>
+
+    <!-- Update and delete gadget -->
+    <div class="card-actions">
+      <a href="{% url 'gadget-update' gadget.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'gadget-delete' gadget.id %}" class="btn danger">Delete</a>
+    </div>
+
+  </div>
+
+</section>
 
 {% endblock %}

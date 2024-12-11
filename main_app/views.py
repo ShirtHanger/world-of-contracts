@@ -198,6 +198,21 @@ def remove_gadget(request, agent_id, gadget_id):
     Agent.objects.get(id=agent_id).gadgets.remove(gadget_id)
     return redirect('agent-detail', agent_id=agent_id)
 
+# Mission-Agent association and removal
+@login_required
+def associate_agent(request, mission_id, agent_id):
+    # Note that you can pass a gadget's id instead of the whole object
+    Mission.objects.get(id=mission_id).agents.add(agent_id)
+    return redirect('mission-detail', mission_id=mission_id)
+
+@login_required
+def remove_agent(request, mission_id, agent_id):
+    # Look up the mission
+    # Look up the agent
+    # Remove the agent from the mission
+    Mission.objects.get(id=mission_id).agents.remove(agent_id)
+    return redirect('mission-detail', mission_id=mission_id)
+
 # Agent-Mission association and removal
 # @login_required
 # def associate_mission(request, agent_id, mission_id):
