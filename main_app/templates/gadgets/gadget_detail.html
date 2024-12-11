@@ -43,10 +43,14 @@
     </article>
 
     <!-- Update and delete gadget -->
+    {% if gadget.user.id == user.id %}
     <div class="card-actions">
       <a href="{% url 'gadget-update' gadget.id %}" class="btn warn">Edit</a>
       <a href="{% url 'gadget-delete' gadget.id %}" class="btn danger">Delete</a>
     </div>
+    {% else %}
+        <p>Gadget file by {{user.username}}</p>
+    {% endif %}
 
   </div>
 

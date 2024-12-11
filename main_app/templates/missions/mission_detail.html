@@ -47,10 +47,14 @@
 
     <!-- Update and delete mission -->
      
+    {% if mission.user.id == user.id %}
     <div class="card-actions">
       <a href="{% url 'mission-update' mission.id %}" class="btn warn">Edit</a>
       <a href="{% url 'mission-delete' mission.id %}" class="btn danger">Delete</a>
     </div>
+    {% else %}
+      <p>Mission file by {{user.username}}</p>
+    {% endif %}
 
     <!-- Items associated with this specific mission -->
 <div class="agents-mission-container">

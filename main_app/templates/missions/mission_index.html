@@ -28,10 +28,14 @@
 
         <small>Mission File ID #{{ mission.id }}</small>
 
+        {% if mission.user.id == user.id %}
         <div class="card-actions">
           <a href="{% url 'mission-update' mission.id %}" class="btn warn">Edit</a>
           <a href="{% url 'mission-delete' mission.id %}" class="btn danger">Delete</a>
         </div>
+        {% else %}
+          <p>Mission file by {{user.username}}</p>
+        {% endif %}
       </div>
     </article>
   {% endfor %}
