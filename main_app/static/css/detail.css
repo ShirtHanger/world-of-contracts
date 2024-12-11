@@ -1,59 +1,144 @@
-body {
-    color: brown;
-    text-align: center;
-}
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Roboto:wght@300;400;500;700&display=swap');
 
 .object-details {
-    margin: 5vw 0;
+    margin: 4rem auto;
+    max-width: 90%;
 }
 
+/* Both the info and stat blocks */
 .info-stats-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.info-container {
-    display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
+/* Object name and detail headers */
 .object-title {
-    transition: background-color ease-in-out 0.5s;
-    background-color: silver;
-    border: 3px outset red;
+    font-family: "Black Ops One", sans-serif;
+    font-size: 2rem;
+    color: #e63946;
+    background-color: #1b1b1b;
+    padding: 1rem;
+    border-radius: 10px;
+    transition: background-color 0.5s ease-in-out;
+    margin-bottom: 1rem;
 }
 
 .object-title:hover {
-    background-color: tomato;
+    background-color: green;
+    color: silver;
 }
 
-.stats-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+/* Info and Stat blocks */
+.info-container, .stats-container {
+    background: #1b1b1b;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    flex: 1 1 300px;
 }
 
+.info-container h3, .stats-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ffd700;
+    font-family: "Black Ops One", sans-serif;
+}
+
+.info-container ul, .stats-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #ccc;
+}
+
+.info-container li, .stats-container li {
+    margin-bottom: 0.5rem;
+}
+
+/* Object's lenghty dossier description */
 .lore-container {
-    background: darkcyan;
-    border: 3px outset red;
-    margin: 0 5vw;
+    background: #1b1b1b;
+    color: #ccc;
+    border: 1px solid #333;
+    padding: 2rem;
+    margin: 2rem auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    font-style: italic;
 }
 
+/* Cards list for child objects */
 .card-container {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem auto;
+    padding: 0;
 }
 
+/* Inidivdual cards */
 .card {
-    border: 0.1vw inset tomato;
-    /* margin: 2vw; */
-    padding: 1vw;
-    width: 20vw;
-    display: flex;
-    justify-content: space-evenly;
-    transition: background-color ease-in-out 0.5s;
+    background: #1b1b1b;
+    border: 1px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    width: 250px;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.5s ease-in-out;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+    background: tomato;
+    color: silver;
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #ffd700;
+}
+
+.card p {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+/* Add/Remove */
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: transform 0.3s, background 0.5s ease-in-out;
+    background: #e63946;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background: #ffd700;
+    color: #000;
+}
+
+/* Mobile */
+@media screen and (max-width: 800px) {
+    .info-stats-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .card {
+        width: 90%;
+    }
 }
