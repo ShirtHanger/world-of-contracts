@@ -10,6 +10,7 @@ urlpatterns = [
     
     # Agent routes
     path('agents/', views.agent_index, name='agent-index'),
+    path('your-agents/', views.your_agent_index, name='your-agent-index'),
     path('agents/<int:agent_id>/', views.agent_detail, name='agent-detail'), # Agent details, collects by ID.
     
     path('agents/create/', views.AgentCreate.as_view(), name='agent-create'),
@@ -25,6 +26,7 @@ urlpatterns = [
     
     # Gadget Routes
     path('gadgets/', views.gadget_index, name='gadget-index'),
+    path('your-gadgets/', views.your_gadget_index, name='your-gadget-index'),
     path('gadgets/<int:gadget_id>/', views.gadget_detail, name='gadget-detail'), # Gadget details, collects by ID.
     
     path('gadgets/create/', views.GadgetCreate.as_view(), name='gadget-create'),
@@ -33,6 +35,7 @@ urlpatterns = [
     
     # Mission Routes
     path('missions/', views.mission_index, name='mission-index'),
+    path('your-missions/', views.your_mission_index, name='your-mission-index'),
     path('missions/<int:mission_id>/', views.mission_detail, name='mission-detail'), # Mission details, collects by ID.
     
     path('missions/create/', views.MissionCreate.as_view(), name='mission-create'),

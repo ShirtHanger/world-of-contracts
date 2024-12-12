@@ -40,6 +40,14 @@ def agent_index(request):
     return render(request, 'agents/agent_index.html', {'agents': agents})
 
 @login_required
+def your_agent_index(request):
+    agents = Agent.objects.filter(user=request.user)
+    # You could also retrieve the logged in user's agents like this
+    # agents = request.user.agent_set.all()
+    return render(request, 'agents/agent_index.html', { 'agents': agents })
+
+
+@login_required
 def agent_detail(request, agent_id):
     agent = Agent.objects.get(id=agent_id)
     gadgets_agent_doesnt_own = Gadget.objects.exclude(id__in = agent.gadgets.all().values_list('id')) # Fetch gadgets this agent DOESNT have
@@ -53,6 +61,13 @@ def gadget_index(request):
     # Placeholder HTML response
     gadgets = Gadget.objects.all() 
     return render(request, 'gadgets/gadget_index.html', {'gadgets': gadgets})
+
+def your_gadget_index(request):
+    gadgets = Gadget.objects.filter(user=request.user)
+    # You could also retrieve the logged in user's gadgets like this
+    # gadgets = request.user.gadget_set.all()
+    return render(request, 'gadgets/gadget_index.html', { 'gadgets': gadgets })
+
     
 @login_required
 def gadget_detail(request, gadget_id):
@@ -67,6 +82,13 @@ def mission_index(request):
     return render(request, 'missions/mission_index.html', {'missions': missions})
     # Placeholder HTML response
     return render(request, 'missions/mission_index.html')
+
+def your_mission_index(request):
+    missions = Mission.objects.filter(user=request.user)
+    # You could also retrieve the logged in user's missions like this
+    # missions = request.user.mission_set.all()
+    return render(request, 'missions/gadget_index.html', { 'missions': missions })
+
     
 @login_required
 def mission_detail(request, mission_id):
