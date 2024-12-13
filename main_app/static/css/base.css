@@ -83,6 +83,21 @@ body {
     filter: grayscale(0%) brightness(100%);
 }
 
+.link-header {
+    background-color: #1b1b1b;
+    border-radius: 10px;
+    border: 2px inset gold;
+    padding: 1rem;
+    
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+    margin-bottom: 1rem;
+}
+
+.link-header:hover {
+    background-color: crimson;
+    color: silver;
+}
+
 /* Links */
 a {
     text-decoration: none;
@@ -108,7 +123,7 @@ ul {
 li {
     transition: background-color 0.5s ease-in-out;
     padding: 1rem;
-    margin: 0.5rem;
+    font-size: smaller;
 }
 
 li:hover {
@@ -119,9 +134,9 @@ li:hover {
 /* Nav Bar and Object detail Cards */
 .links-card {
     border: 2px inset tomato;
-    /* padding: 1.5rem; */
-    padding: 2vw;
-    margin: 2vw;
+    padding: 1vw;
+    margin: 1vw;
+    height: 50%;
     border-radius: 10px;
     background-color: #1b1b1b;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);

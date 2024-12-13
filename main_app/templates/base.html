@@ -23,33 +23,51 @@
           <h2>Malum necessarium</h2>
         </a>
       </div>
+
+      
       
       <nav>
+        <a href="{% url 'about' %}">
+          <h5 class="link-header">
+            About our organization
+          </h5>
+        </a>
         <ul>
 
           {% if user.is_authenticated %} <!-- Conditional based on if user is logged in or not -->
 
-          <div class="links-card">
-            <li><a href="{% url 'about' %}">About our organization</a></li>
+
+          <section>
+            <h5 class="link-header">All Files</h5>
+            <div class="links-card">
+              
+              <li><a href="{% url 'agent-index' %}">Agents</a></li>
+              <li><a href="{% url 'gadget-index' %}">Gadgets</a></li>
+              <li><a href="{% url 'mission-index' %}">Missions</a></li>
+          </section>
+            
+            
           </div>
 
-          <div class="links-card">
-            <li><a href="{% url 'agent-index' %}">View agent files</a></li>
-            <li><a href="{% url 'your-agent-index' %}">Your agent files</a></li>
-            <li><a href="{% url 'agent-create' %}">Create agent file</a></li>
-          </div>
+          <section>
+            <h5 class="link-header">Your Files</h5>
+            <div class="links-card">
+  
+              <li><a href="{% url 'your-agent-index' %}">Agents</a></li>
+              <li><a href="{% url 'your-gadget-index' %}">Gadgets</a></li>
+              <li><a href="{% url 'your-mission-index' %}">Missions</a></li>
+            </div>
+          </section>
 
-          <div class="links-card">
-            <li><a href="{% url 'gadget-index' %}">View gadget files</a></li>
-            <li><a href="{% url 'your-gadget-index' %}">Your gadget files</a></li>
-            <li><a href="{% url 'gadget-create' %}">Create gadget file</a></li>
-          </div>
-
-          <div class="links-card">
-            <li><a href="{% url 'mission-index' %}">View mission files</a></li>
-            <li><a href="{% url 'your-mission-index' %}">Your mission files</a></li>
-            <li><a href="{% url 'mission-create' %}">Create mission file</a></li>
-          </div>
+          <section>
+            <h5 class="link-header">Create Files</h5>
+            <div class="links-card">
+              
+              <li><a href="{% url 'agent-create' %}">Agents</a></li>
+              <li><a href="{% url 'gadget-create' %}">Gadgets</a></li>
+              <li><a href="{% url 'mission-create' %}">Missions</a></li>
+            </div>
+          </section>
 
           <!-- Logout -->
           <div class="links-card">
@@ -58,21 +76,30 @@
                 {% csrf_token %}
                 <button type="submit">Log out</button>
               </form>
+              
+                
+              
             
           </div>
 
           {% else %}
-          <div class="links-card">
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'home' %}">Login</a></li>
-            <li><a href="{% url 'signup' %}">Sign Up</a></li>
-          </div>
+          <section>
+            <h5 class="link-header">Authorization</h5>
+            <div class="links-card">
+              <li><a href="{% url 'home' %}">Login</a></li>
+              <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            </div>
+          </section>
 
-          <div class="links-card">
-            <li><a href="{% url 'agent-index' %}">View agent files</a></li>
-            <li><a href="{% url 'gadget-index' %}">View gadget files</a></li>
-            <li><a href="{% url 'mission-index' %}">View mission files</a></li>
-          </div>
+          <section>
+            <h3 class="link-header">All Files</h3>
+            <div class="links-card">
+              
+              <li><a href="{% url 'agent-index' %}">Agents</a></li>
+              <li><a href="{% url 'gadget-index' %}">Gadgets</a></li>
+              <li><a href="{% url 'mission-index' %}">Missions</a></li>
+            </div>
+          </section>
           {% endif %}
         </ul>
       </nav>
