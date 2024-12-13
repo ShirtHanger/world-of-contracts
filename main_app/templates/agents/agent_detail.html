@@ -12,26 +12,11 @@
   
   <div class="object-details">
 
-    <h1 class="object-title">Agent {{ agent.code_name }}</h1>
+    <h1 class="object-title">{{ agent.code_name }}</h1>
     <h3>{{ agent.tagline }}</h3>
 
     <div class="info-stats-container">
 
-      <section class="info-container">
-
-        <h3 class="object-title"> Asset Details </h3>
-        
-        <ul>
-          <div class="links-card">
-            <li>{{ agent.get_agent_type_display }}</li>
-            <li>{{ agent.get_experience_level_display }} asset</li>
-            <li>{{ agent.previous_agency }}</li>
-          </div>
-        </ul>
-        
-      </section> 
-  
-  
       <section class="stats-container">
           
         <div class="stat-card">
@@ -47,7 +32,23 @@
             </div>
           </ul>
         </div>
+      </section>
+
+      <section class="info-container">
+
+        <h3 class="object-title"> Asset Details </h3>
         
+        <ul>
+          <div class="links-card">
+            <li>{{ agent.get_agent_type_display }}</li>
+            <li>{{ agent.get_experience_level_display }} asset</li>
+            <li>{{ agent.previous_agency }}</li>
+          </div>
+        </ul>
+        
+      </section> 
+        
+      <section class="stats-container">
         <div class="stat-card">
           <h3 class="object-title">Origin</h3>
   
@@ -76,7 +77,7 @@
       <a href="{% url 'agent-delete' agent.id %}" class="btn danger">Delete</a>
     </div>
     {% else %}
-        <p>Agent file by {{agent.user.username}}</p>
+        <p class="redacted-data-label">Agent file by {{agent.user.username}}, authorization required to modify</p>
     {% endif %}
     
     
@@ -88,7 +89,7 @@
 </section>
 
 <!-- Items associated with this specific agent -->
-<div class="gadgets-mission-container">
+<div class="gadgets-container">
 
   <!-- Agent gadgets -->
   <section class="gadgets">
@@ -104,19 +105,21 @@
             <a href="{% url 'gadget-detail' gadget.id %}">
               <p class="object-title">{{ gadget.name }} - <small>{{ gadget.get_type_display }}</small></p>
             </a>
-            <p></p>
             <!-- Remove gadget from agent -->
+            {% if user and agent.user.id == user.id %}
             <form action="{% url 'remove-gadget' agent.id gadget.id %}" method="post"> <!-- Both IDs provided, seperate via space -->
               {% csrf_token %}
               <button type="submit" class="btn btn-danger">Remove Gadget</button>
             </form>
+            {% endif %}
           </div>
         {% endfor %} 
       {% else %}
-        <p class="no-gadgets">{{agent.code_name}} is unequipped! They may not need any gadgets!</p>
+        <p class="no-gadgets">{{agent.code_name}} is unequipped</p>
       {% endif %}
     </div>
 
+    {% if user.is_authenticated %}
     <h3 class="object-title">Available Gadgets</h3>
     <div class="card-container">
       {% if gadgets.count %} 
@@ -127,10 +130,12 @@
             </a>
 
             <!-- Give gadget to agent -->
+            
             <form action="{% url 'associate-gadget' agent.id gadget.id %}" method="post"> <!-- Both IDs provided, seperate via space -->
               {% csrf_token %}
               <button type="submit" class="btn submit">Give gadget</button>
             </form>
+          
             
           </div>
         {% endfor %} 
@@ -138,6 +143,9 @@
         <p class="all-gadgets">{{agent.code_name}} is equipped with all availabele gadgets</p>
       {% endif %}
     </div>
+    {% else %}
+    <h4 class="redacted-data-label">[Clearance required to view unequipped gadgets]</h4>
+    {% endif %}
 
 
   </section>

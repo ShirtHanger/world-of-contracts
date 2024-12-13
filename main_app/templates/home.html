@@ -5,9 +5,9 @@
 {% endblock %}
 {% block content %}
 
-<section class="tagline-container">
-  <p>[Clearance required]</p>
-</section>
+{% comment %} <section class="tagline-container">
+  <p class="redacted-data-label">[Clearance required]</p>
+</section> {% endcomment %}
 
 
 <!--  Conditional log in-sign up -->
@@ -15,7 +15,8 @@
 {% if not user.is_authenticated %}
 <section>
   <form action="{% url 'home' %}" method="post" class="login">
-    <h1>Enter your credentials</h1>
+    <p class="redacted-data-label">[Clearance required]</p>
+    <h1 class="redacted-data-label">Enter your credentials</h1>
     {% csrf_token %} {{ form.as_p }}
     <!-- This is a feature of Django’s authentication that will automatically redirect a 
      user that tries to access a protected route back to that route after they log in -->
@@ -25,8 +26,7 @@
 </section>
 {% else %}
 <section class="tagline-container">
-  <p>...</p>
-  <p>[You have been authorized, {{user.username}}]</p>
+  <p class="authorized-data-label">[You have been authorized, {{user.username}}]</p>
 </section>
 
 {% endif %}

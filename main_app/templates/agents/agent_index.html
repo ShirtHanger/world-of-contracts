@@ -47,7 +47,7 @@
                 <a href="{% url 'agent-delete' agent.id %}" class="btn danger">Delete</a>
               </div>
             {% else %}
-              <p>Agent file by {{agent.user.username}}</p>
+              <p class="redacted-data-label">Agent file by {{agent.user.username}}, authorization required to modify</p>
             {% endif %}
 
               

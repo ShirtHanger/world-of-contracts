@@ -3,9 +3,28 @@
 <h1>About our organization</h1>
 <hr />
 <p class="page-content">
-    <p>You thought we'd just tell you about our secret organization?</p>
-    <p>Bold. I like that. Very well.</p>
-    <p>We'll if you can hack into this!</p>
-    <h3>[CONFIDENTIAL]</h3>
+    {% if user.is_authenticated %}
+    <h1 class="authorized-data-label">[AUTHORIZED]</h1>
+
+        <p>Welcome, Operative {{ user.username }}. You have been granted clearance to access the core details of <strong>Global Contracts</strong>, a clandestine network managing covert operations, high-profile eliminations, and intelligence acquisition worldwide. Our organization operates in the shadows, ensuring precision, anonymity, and success in every mission.</p>
+
+        <h3 class="header-title-container">Our Mission</h3>
+        <p>We serve as the unseen architects of geopolitical balance, offering tailored solutions to private and governmental clients. From infiltrating fortified compounds to neutralizing high-value targets, we leave no trace but a lasting impact.</p>
+
+        <h3 class="header-title-container">What We Offer</h3>
+        <ul>
+            <li>- Access to an elite roster of agents: Each operative is meticulously trained and equipped for specialized missions, ranging from stealth operations to full-scale tactical interventions.</li>
+            <li>- Cutting-edge technology: Our arsenal includes untraceable gadgets, advanced surveillance systems, and weaponry engineered to perfection.</li>
+            <li>- Global reach: With operatives embedded across continents, we guarantee operational readiness anywhere in the world.</li>
+        </ul>
+
+        <h3 class="header-title-container">Our Code</h3>
+        <p>Integrity and discretion are at the heart of our operations. Every contract is executed with unwavering loyalty to the client’s directive while maintaining the sanctity of our operatives' identities</p>.
+
+        <h3 class="header-title-container">Your Role</h3>
+        <p>As an authorized operative, you are entrusted with classified mission files, agent dossiers, and strategic resources. Exercise caution, and remember: in this line of work, trust is earned, and betrayal is final.</p>
+    {% else %}
+    <h1 class="redacted-data-label">[REDACTED]</h1>
+    {% endif %}
 </p>
 {% endblock %}

@@ -9,7 +9,7 @@
   
   <div class="object-details">
 
-    <h1 class="object-title">Operation - {{ mission.code_name }}</h1>
+    <h1 class="object-title">{{ mission.code_name }}</h1>
 
     <div class="info-stats-container">
 
@@ -21,11 +21,15 @@
           <div class="links-card">
             <li>{{ mission.get_urgency_display }}</li>
             <li>{{ mission.get_mission_type_display }}</li>
-            <h3><small>{{ mission.objective }}</small></h3>
           </div>
         </ul>
         
       </section> 
+
+      <section class="info-container">
+        <img src="{% static 'images/globe.png' %}" alt="Globe">
+        <h3><small>{{ mission.objective }}</small></h3>
+      </section>
   
       <section class="stats-container">
           
@@ -57,11 +61,11 @@
       <a href="{% url 'mission-delete' mission.id %}" class="btn danger">Delete</a>
     </div>
     {% else %}
-      <p>Mission file by {{mission.user.username}}</p>
+      <p class="redacted-data-label">Mission file by {{mission.user.username}}, authorization required to modify</p>
     {% endif %}
 
     <!-- Items associated with this specific mission -->
-<div class="agents-mission-container">
+<div class="agents-container">
 
     <!-- Mission agents -->
     <section class="agents">
@@ -78,10 +82,12 @@
                 <p class="object-title">{{ agent.code_name }} - <small>{{ agent.get_experience_level_display }} {{ agent.get_agent_type_display }}</small></p>
               </a>
               <!-- Remove agent from mission -->
+              {% if user and mission.user.id == user.id %}
               <form action="{% url 'remove-agent' mission.id agent.id %}" method="post"> <!-- Both IDs provided, seperate via space -->
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger">Remove Agent</button>
               </form>
+              {% endif %}
             </div>
           {% endfor %} 
         {% else %}
@@ -89,7 +95,8 @@
         {% endif %}
       </div>
   
-      <h3 class="object-title">Available Agents</h3>
+      {% if user.is_authenticated %}
+      <h3 class="object-title">Unassigned Agents</h3>
       <div class="card-container">
         {% if agents.count %} 
           {% for agent in agents.all %}
@@ -99,10 +106,12 @@
               </a>
   
               <!-- Give agent to mission -->
+              
               <form action="{% url 'associate-agent' mission.id agent.id %}" method="post"> <!-- Both IDs provided, seperate via space -->
                 {% csrf_token %}
                 <button type="submit" class="btn submit">Assign agent</button>
               </form>
+              
               
             </div>
           {% endfor %} 
@@ -110,6 +119,9 @@
           <p class="all-agents">All agents have been assigned to {{mission.code_name}}</p>
         {% endif %}
       </div>
+      {% else %}
+      <h4 class="redacted-data-label">[Clearance required to view unassigned agents]</h4>
+      {% endif %}
   
   
     </section>

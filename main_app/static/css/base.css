@@ -44,9 +44,12 @@ body {
     font-size: 1.2rem;
     color: gold;
     border-radius: 10px;
+    border: 1px solid #333;
     margin: 0.5rem 0 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     opacity: 0;     
-    transition: transform ease-in-out 0.5s, opacity 0.5s, visibility 0.5s;         
+    transition: transform ease-in-out 0.5s, opacity 0.5s, visibility 0.5s;
+    background: linear-gradient(#1b1b1b, #2c2c2c);         
 }
 
 .header-title-container:hover {
@@ -184,3 +187,42 @@ button:hover, .btn:hover {
         width: 100%;
     }
 }
+
+.redacted-data-label {
+    display: inline-block;
+    font-family: "Black Ops One", sans-serif;
+    font-size: 1rem;
+    color: #ffd700;
+    background-color: #1b1b1b;
+    padding: 0.5rem 1rem;
+    border: 2px dashed crimson;
+    border-radius: 5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.redacted-data-label:hover {
+    background-color: crimson;
+    color: #fff;
+}
+
+.authorized-data-label {
+    display: inline-block;
+    font-family: "Black Ops One", sans-serif;
+    font-size: 1rem;
+    color: #21f379;
+    background-color: #1b1b1b;
+    padding: 0.5rem 1rem;
+    border: 2px solid #21f379;
+    border-radius: 5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.authorized-data-label:hover {
+    background-color: #21f379;
+    color: #000;
+}
+

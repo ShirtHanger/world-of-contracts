@@ -52,7 +52,7 @@
       <a href="{% url 'gadget-delete' gadget.id %}" class="btn danger">Delete</a>
     </div>
     {% else %}
-        <p>Gadget file by {{gadget.user.username}}</p>
+        <p class="redacted-data-label">Gadget file by {{gadget.user.username}}, authorization required to modify</p>
     {% endif %}
 
   </div>

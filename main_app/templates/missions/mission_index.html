@@ -37,7 +37,7 @@
           <a href="{% url 'mission-delete' mission.id %}" class="btn danger">Delete</a>
         </div>
         {% else %}
-          <p>Mission file by {{mission.user.username}}</p>
+          <p class="redacted-data-label">Mission file by {{mission.user.username}}, authorization required to modify</p>
         {% endif %}
       </div>
     </article>
