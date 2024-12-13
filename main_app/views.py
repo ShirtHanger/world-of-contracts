@@ -33,7 +33,7 @@ class Home(LoginView):
 def about(request):
     return render(request, 'about.html')
 
-@login_required
+# @login_required
 def agent_index(request):
     # Placeholder HTML response
     agents = Agent.objects.all() 
@@ -47,7 +47,7 @@ def your_agent_index(request):
     return render(request, 'agents/agent_index.html', { 'agents': agents })
 
 
-@login_required
+# @login_required
 def agent_detail(request, agent_id):
     agent = Agent.objects.get(id=agent_id)
     gadgets_agent_doesnt_own = Gadget.objects.exclude(id__in = agent.gadgets.all().values_list('id')) # Fetch gadgets this agent DOESNT have
@@ -56,12 +56,13 @@ def agent_detail(request, agent_id):
         'gadgets': gadgets_agent_doesnt_own,
         })
     
-@login_required
+# @login_required
 def gadget_index(request):
     # Placeholder HTML response
     gadgets = Gadget.objects.all() 
     return render(request, 'gadgets/gadget_index.html', {'gadgets': gadgets})
 
+@login_required
 def your_gadget_index(request):
     gadgets = Gadget.objects.filter(user=request.user)
     # You could also retrieve the logged in user's gadgets like this
@@ -69,20 +70,21 @@ def your_gadget_index(request):
     return render(request, 'gadgets/gadget_index.html', { 'gadgets': gadgets })
 
     
-@login_required
+# @login_required
 def gadget_detail(request, gadget_id):
     gadget = Gadget.objects.get(id=gadget_id)
     return render(request, 'gadgets/gadget_detail.html', {
         'gadget': gadget
         })
     
-@login_required
+# @login_required
 def mission_index(request):
     missions = Mission.objects.all() 
     return render(request, 'missions/mission_index.html', {'missions': missions})
     # Placeholder HTML response
     return render(request, 'missions/mission_index.html')
 
+@login_required
 def your_mission_index(request):
     missions = Mission.objects.filter(user=request.user)
     # You could also retrieve the logged in user's missions like this
@@ -90,7 +92,7 @@ def your_mission_index(request):
     return render(request, 'missions/gadget_index.html', { 'missions': missions })
 
     
-@login_required
+# @login_required
 def mission_detail(request, mission_id):
     mission = Mission.objects.get(id=mission_id)
     # agents = Agent.objects.all() 

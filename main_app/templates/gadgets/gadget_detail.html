@@ -46,7 +46,7 @@
     </article>
 
     <!-- Update and delete gadget -->
-    {% if gadget.user.id == user.id %}
+    {% if user and gadget.user.id == user.id %}
     <div class="card-actions">
       <a href="{% url 'gadget-update' gadget.id %}" class="btn warn">Edit</a>
       <a href="{% url 'gadget-delete' gadget.id %}" class="btn danger">Delete</a>

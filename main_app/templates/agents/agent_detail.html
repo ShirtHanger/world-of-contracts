@@ -70,7 +70,7 @@
 
     <!-- Update and delete agent -->
      
-    {% if agent.user.id == user.id %}
+    {% if user and agent.user.id == user.id %}
     <div class="card-actions">
       <a href="{% url 'agent-update' agent.id %}" class="btn warn">Edit</a>
       <a href="{% url 'agent-delete' agent.id %}" class="btn danger">Delete</a>

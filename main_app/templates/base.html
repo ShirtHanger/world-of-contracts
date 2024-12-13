@@ -52,18 +52,26 @@
           </div>
 
           <!-- Logout -->
-          <li>
-            <form class="links-card" id="logout-form" method="post" action="{% url 'logout' %}">
-              {% csrf_token %}
-              <button type="submit">Log out</button>
-            </form>
-          </li>
+          <div class="links-card">
+            
+              <form id="logout-form" method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Log out</button>
+              </form>
+            
+          </div>
 
           {% else %}
           <div class="links-card">
             <li><a href="{% url 'about' %}">About</a></li>
             <li><a href="{% url 'home' %}">Login</a></li>
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          </div>
+
+          <div class="links-card">
+            <li><a href="{% url 'agent-index' %}">View agent files</a></li>
+            <li><a href="{% url 'gadget-index' %}">View gadget files</a></li>
+            <li><a href="{% url 'mission-index' %}">View mission files</a></li>
           </div>
           {% endif %}
         </ul>

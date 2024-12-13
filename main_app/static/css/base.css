@@ -15,6 +15,74 @@ body {
     font-style: normal;
 }
 
+/* Header for top of page */
+.header-title-container {
+    font-family: "Black Ops One", sans-serif;
+    margin: 2rem 0;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    border: 2px inset gold; 
+    padding: 1rem 2rem;  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    transition: background-color 0.5s ease-in-out;
+    
+}
+
+
+.header-title-container h1 {
+    font-size: 3rem;
+    color: crimson;
+    border-radius: 10px;
+    border: 2px inset;
+    background-color: #1b1b1b;
+    margin: 0;
+    transition: color ease-in-out 0.5s, background-color 0.5s ease-in-out;
+}
+
+.header-title-container h2 {
+    
+    font-size: 1.2rem;
+    color: gold;
+    border-radius: 10px;
+    margin: 0.5rem 0 0;
+    opacity: 0;     
+    transition: transform ease-in-out 0.5s, opacity 0.5s, visibility 0.5s;         
+}
+
+.header-title-container:hover {
+    
+    background-color: rgb(73, 73, 73);
+}
+
+.header-title-container h1:hover {
+    color: gold;
+    background-color: rgb(73, 73, 73);
+}
+
+.header-title-container h2:hover {
+    opacity: 1;           
+}
+
+.page-header {
+    padding: 2rem 0;
+    color: crimson;
+    border-bottom: 2px solid #444;
+    font-family: "Black Ops One", sans-serif;
+    text-align: center;
+}
+
+.page-header img {
+    width: 50px;
+    height: auto;
+    margin: 1rem;
+    filter: grayscale(100%) brightness(70%);
+    transition: filter 0.5s ease-in-out-in-out;
+}
+
+.page-header img:hover {
+    filter: grayscale(0%) brightness(100%);
+}
+
 /* Links */
 a {
     text-decoration: none;
@@ -71,7 +139,7 @@ button, .btn {
     border: 2px groove yellow;
     /* color: white; */
     font-size: 1rem;
-    /* font-family: "Roboto", sans-serif; */ /* Consider changing to something else */
+     /* Consider changing to something else */
     padding: 0.75rem 1.5rem;
     border-radius: 5px;
     cursor: pointer;
@@ -85,45 +153,7 @@ button:hover, .btn:hover {
     color: #1b1b1b;
 }
 
-/* Page Header and images for rendered data */
-.header-title-container {
-    margin: 2rem 0;
-    text-align: center;
-}
 
-.header-title-container h1 {
-    font-family: "Black Ops One", sans-serif;
-    font-size: 3rem;
-    color: crimson;
-    margin: 0;
-}
-
-.header-title-container h2 {
-    /* font-family: "Roboto", sans-serif; */
-    font-size: 1.2rem;
-    color: gold;
-    margin: 0.5rem 0 0;
-}
-
-.page-header {
-    padding: 2rem 0;
-    color: crimson;
-    border-bottom: 2px solid #444;
-    font-family: "Black Ops One", sans-serif;
-    text-align: center;
-}
-
-.page-header img {
-    width: 50px;
-    height: auto;
-    margin: 1rem;
-    filter: grayscale(100%) brightness(70%);
-    transition: filter 0.5s ease-in-out-in-out;
-}
-
-.page-header img:hover {
-    filter: grayscale(0%) brightness(100%);
-}
 
 /* Mobile */
 @media screen and (max-width: 768px) {

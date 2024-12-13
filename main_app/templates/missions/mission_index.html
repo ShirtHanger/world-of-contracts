@@ -6,7 +6,7 @@
 {% block content %}
 
 <section class="page-header">
-    <h1>Your Mission List</h1>
+    <h1>Mission Files</h1>
     <img src="" alt="Sunglasses! Put sun glasses!" />
     <img src="" alt="A dagger probably" />
     <img src="" alt="A gun maybe" />
@@ -28,13 +28,13 @@
 
         <small>Mission File ID #{{ mission.id }}</small>
 
-        {% if mission.user.id == user.id %}
+        {% if user and mission.user.id == user.id %}
         <div class="card-actions">
           <a href="{% url 'mission-update' mission.id %}" class="btn warn">Edit</a>
           <a href="{% url 'mission-delete' mission.id %}" class="btn danger">Delete</a>
         </div>
         {% else %}
-          <p>Mission file by {{user.username}}</p>
+          <p>Mission file by {{mission.user.username}}</p>
         {% endif %}
       </div>
     </article>

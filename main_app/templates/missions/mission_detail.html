@@ -51,7 +51,7 @@
 
     <!-- Update and delete mission -->
      
-    {% if mission.user.id == user.id %}
+    {% if user and mission.user.id == user.id %}
     <div class="card-actions">
       <a href="{% url 'mission-update' mission.id %}" class="btn warn">Edit</a>
       <a href="{% url 'mission-delete' mission.id %}" class="btn danger">Delete</a>
