@@ -23,11 +23,13 @@
             <!-- 
             Double curly braces means page is rendering PYTHON syntax, like react 
             -->
-            <div class="card-title">
-              <a href="{% url 'gadget-detail' gadget.id %}">
-                <h2>[{{ gadget.name }}]</h2>
-              </a>
-            </div>
+            <a href="{% url 'gadget-detail' gadget.id %}">
+              <div class="card-title">
+                
+                  <h2>[{{ gadget.name }}]</h2>
+                
+              </div>
+            </a>
   
             <div class="card-data-preview">
               <h3>{{ gadget.get_type_display }}</h3> 

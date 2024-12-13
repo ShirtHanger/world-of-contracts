@@ -24,11 +24,13 @@
             <!-- 
             Double curly braces means page is rendering PYTHON syntax, like react 
             -->
-            <div class="card-title">
-              <a href="{% url 'agent-detail' agent.id %}">
-                <h2>[{{ agent.code_name }}]</h2>
-              </a>
-            </div>
+            <a href="{% url 'agent-detail' agent.id %}">
+              <div class="card-title">
+                
+                  <h2>[{{ agent.code_name }}]</h2>
+                
+              </div>
+            </a>
   
             <div class="card-data-preview">
               <h3>{{ agent.get_experience_level_display }} {{ agent.get_agent_type_display }}</h3>

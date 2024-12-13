@@ -22,11 +22,6 @@ from .models import Agent, Gadget, Mission
 # Import form for new skills for agent
 from .forms import AgentForm, GadgetForm, MissionForm#, SkillForm
 
-
-def home(request):
-    # Placeholder HTML response
-    return render(request, 'home.html')
-
 class Home(LoginView):
     template_name = 'home.html'
 
@@ -35,7 +30,6 @@ def about(request):
 
 # @login_required
 def agent_index(request):
-    # Placeholder HTML response
     agents = Agent.objects.all() 
     return render(request, 'agents/agent_index.html', {'agents': agents})
 
@@ -58,7 +52,6 @@ def agent_detail(request, agent_id):
     
 # @login_required
 def gadget_index(request):
-    # Placeholder HTML response
     gadgets = Gadget.objects.all() 
     return render(request, 'gadgets/gadget_index.html', {'gadgets': gadgets})
 
@@ -81,15 +74,14 @@ def gadget_detail(request, gadget_id):
 def mission_index(request):
     missions = Mission.objects.all() 
     return render(request, 'missions/mission_index.html', {'missions': missions})
-    # Placeholder HTML response
-    return render(request, 'missions/mission_index.html')
+    
 
 @login_required
 def your_mission_index(request):
     missions = Mission.objects.filter(user=request.user)
     # You could also retrieve the logged in user's missions like this
     # missions = request.user.mission_set.all()
-    return render(request, 'missions/gadget_index.html', { 'missions': missions })
+    return render(request, 'missions/mission_index.html', { 'missions': missions })
 
     
 # @login_required
@@ -101,8 +93,6 @@ def mission_detail(request, mission_id):
         'mission': mission,
         'agents': unassigned_agents
         })
-    # Placeholder HTML response
-    return render(request, 'missions/mission_detail.html')
     
     
 # SIGN UP FUNCTIONALITY

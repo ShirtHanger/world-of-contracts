@@ -16,11 +16,14 @@
 <section class="card-container">
   {% for mission in missions %}
     <article class="card">
-      <div class="card-title">
-        <a href="{% url 'mission-detail' mission.id %}">
-          <h2>[{{ mission.code_name }}]</h2>
-        </a>
-      </div>
+
+      <a href="{% url 'mission-detail' mission.id %}">
+        <div class="card-title">
+          
+            <h2>[{{ mission.code_name }}]</h2>
+          
+        </div>
+      </a>
 
       <div class="card-data-preview">
         <h3>{{ mission.get_urgency_display }} - {{ mission.get_mission_type_display }}</h3>

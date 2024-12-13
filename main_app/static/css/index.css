@@ -65,13 +65,13 @@
     font-size: 1.2rem;
 }
 
-.card-title a {
+.card-title h2 {
     text-decoration: none;
     color: inherit;
     transition: color ease-in-out 0.5s;
 }
 
-.card-title a:hover {
+.card-title h2:hover {
     color: #ffd700;
 }
 
