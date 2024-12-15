@@ -147,7 +147,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles" # Heroku Deployment
 LOGIN_URL = 'home'
 
 # Add this variable to specify where successful logins should redirect to
-LOGIN_REDIRECT_URL = 'agent-index'
+LOGIN_REDIRECT_URL = '/'
 
 # Add this variable to specify where logging out redirects to
 LOGOUT_REDIRECT_URL = 'home'

@@ -21,6 +21,8 @@
           
         <div class="stat-card">
           <h3 class="object-title">Bio</h3>
+
+          
   
           <ul>
             <div class="links-card">
@@ -37,6 +39,12 @@
       <section class="info-container">
 
         <h3 class="object-title"> Asset Details </h3>
+
+          {% if agent.gender == 'Female' or agent.gender == 'female' %}
+          <img src="{% static 'images/JaneDoe.png' %}" alt="agent image">
+          {% else %}
+          <img src="{% static 'images/john-doe.png' %}" alt="agent image">
+          {% endif %}
         
         <ul>
           <div class="links-card">
@@ -72,12 +80,19 @@
     <!-- Update and delete agent -->
      
     {% if user and agent.user.id == user.id %}
-    <div class="card-actions">
-      <a href="{% url 'agent-update' agent.id %}" class="btn warn">Edit</a>
-      <a href="{% url 'agent-delete' agent.id %}" class="btn danger">Delete</a>
-    </div>
+    <p class="authorized-data-label">[Editing privileges granted, {{user.username}}]</p>
+      <div class="card-actions">
+        <a href="{% url 'agent-update' agent.id %}" class="btn warn">Edit</a>
+        <a href="{% url 'agent-delete' agent.id %}" class="btn danger">Delete</a>
+      </div>
+    {% elif user and user.is_superuser %}
+    <p class="admin-data-label">[Admin privileges granted, {{user.username}}]</p>
+      <div class="card-actions">
+        <a href="{% url 'agent-update' agent.id %}" class="btn warn">Edit</a>
+        <a href="{% url 'agent-delete' agent.id %}" class="btn danger">Delete</a>
+      </div>
     {% else %}
-        <p class="redacted-data-label">Agent file by {{agent.user.username}}, authorization required to modify</p>
+      <p class="redacted-data-label">[Editing privileges denied by file owner ({{agent.user.username}})]</p>
     {% endif %}
     
     

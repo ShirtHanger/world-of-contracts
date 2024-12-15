@@ -17,6 +17,7 @@
       <section class="info-container">
         
         <h2 class="object-title">Origin</h2>
+
         <ul>
           <div class="links-card">
             <li>[{{ gadget.manufacturer }}]</li>
@@ -24,6 +25,10 @@
           </div>
         </ul>
       </section> 
+
+      <section class="info-container">
+        <img src="{% static 'images/toolbox.webp' %}" alt="toolbox">
+      </section>
   
       <section class="stats-container">
           
@@ -47,12 +52,19 @@
 
     <!-- Update and delete gadget -->
     {% if user and gadget.user.id == user.id %}
-    <div class="card-actions">
-      <a href="{% url 'gadget-update' gadget.id %}" class="btn warn">Edit</a>
-      <a href="{% url 'gadget-delete' gadget.id %}" class="btn danger">Delete</a>
-    </div>
+    <p class="authorized-data-label">[Editing privileges granted, {{user.username}}]</p>
+      <div class="card-actions">
+        <a href="{% url 'gadget-update' gadget.id %}" class="btn warn">Edit</a>
+        <a href="{% url 'gadget-delete' gadget.id %}" class="btn danger">Delete</a>
+      </div>
+    {% elif user and user.is_superuser %}
+    <p class="admin-data-label">[Admin privileges granted, {{user.username}}]</p>
+      <div class="card-actions">
+        <a href="{% url 'gadget-update' gadget.id %}" class="btn warn">Edit</a>
+        <a href="{% url 'gadget-delete' gadget.id %}" class="btn danger">Delete</a>
+      </div>
     {% else %}
-        <p class="redacted-data-label">Gadget file by {{gadget.user.username}}, authorization required to modify</p>
+      <p class="redacted-data-label">[Editing privileges denied by file owner ({{gadget.user.username}})]</p>
     {% endif %}
 
   </div>

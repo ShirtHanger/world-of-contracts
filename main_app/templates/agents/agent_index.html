@@ -38,16 +38,23 @@
               
     
               <small>Agent File ID #{{ agent.id }}</small>
-            
+              
   
             <!-- Update and delete agent -->
             {% if user and agent.user.id == user.id %}
+            <p class="authorized-data-label">[Editing privileges granted, {{user.username}}]</p>
+              <div class="card-actions">
+                <a href="{% url 'agent-update' agent.id %}" class="btn warn">Edit</a>
+                <a href="{% url 'agent-delete' agent.id %}" class="btn danger">Delete</a>
+              </div>
+            {% elif user and user.is_superuser %}
+            <p class="admin-data-label">[Admin privileges granted, {{user.username}}]</p>
               <div class="card-actions">
                 <a href="{% url 'agent-update' agent.id %}" class="btn warn">Edit</a>
                 <a href="{% url 'agent-delete' agent.id %}" class="btn danger">Delete</a>
               </div>
             {% else %}
-              <p class="redacted-data-label">Agent file by {{agent.user.username}}, authorization required to modify</p>
+              <p class="redacted-data-label">[Editing privileges denied by file owner ({{agent.user.username}})]</p>
             {% endif %}
 
               

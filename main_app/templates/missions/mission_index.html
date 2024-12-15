@@ -32,13 +32,21 @@
         <small>Mission File ID #{{ mission.id }}</small>
 
         {% if user and mission.user.id == user.id %}
-        <div class="card-actions">
-          <a href="{% url 'mission-update' mission.id %}" class="btn warn">Edit</a>
-          <a href="{% url 'mission-delete' mission.id %}" class="btn danger">Delete</a>
-        </div>
+        <p class="authorized-data-label">[Editing privileges granted, {{user.username}}]</p>
+          <div class="card-actions">
+            <a href="{% url 'mission-update' mission.id %}" class="btn warn">Edit</a>
+            <a href="{% url 'mission-delete' mission.id %}" class="btn danger">Delete</a>
+          </div>
+        {% elif user and user.is_superuser %}
+        <p class="admin-data-label">[Admin privileges granted, {{user.username}}]</p>
+          <div class="card-actions">
+            <a href="{% url 'mission-update' mission.id %}" class="btn warn">Edit</a>
+            <a href="{% url 'mission-delete' mission.id %}" class="btn danger">Delete</a>
+          </div>
         {% else %}
-          <p class="redacted-data-label">Mission file by {{mission.user.username}}, authorization required to modify</p>
+          <p class="redacted-data-label">[Editing privileges denied by file owner ({{mission.user.username}})]</p>
         {% endif %}
+        
       </div>
     </article>
   {% endfor %}

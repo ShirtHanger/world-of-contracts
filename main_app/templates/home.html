@@ -24,6 +24,10 @@
     <button type="submit" class="btn submit">Login</button>
   </form>
 </section>
+{% elif user.is_superuser %}
+<section class="tagline-container">
+  <p class="admin-data-label">[Admin privileges granted, {{user.username}}]</p>
+</section>
 {% else %}
 <section class="tagline-container">
   <p class="authorized-data-label">[You have been authorized, {{user.username}}]</p>
