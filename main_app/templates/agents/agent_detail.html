@@ -8,7 +8,7 @@
 {% endblock %} 
 {% block content %}
 
-<section class="agent-container">
+<section class="object-container">
   
   <div class="object-details">
 
@@ -104,12 +104,13 @@
 </section>
 
 <!-- Items associated with this specific agent -->
-<div class="gadgets-container">
+<div class="related-objects-container">
 
   <!-- Agent gadgets -->
-  <section class="gadgets">
+  <section class="related-objects">
     <div class="object-title">
       <h2>Armory</h2>
+      <img src="{% static 'images/pistol.svg' %}" alt="Pistol" />
     </div>
 
     <h3>{{ agent.code_name }}'s Gadgets</h3>
@@ -130,7 +131,7 @@
           </div>
         {% endfor %} 
       {% else %}
-        <p class="no-gadgets">{{agent.code_name}} is unequipped</p>
+        <p class="no-related-objects">{{agent.code_name}} is unequipped</p>
       {% endif %}
     </div>
 
@@ -162,8 +163,6 @@
     <h4 class="redacted-data-label">[Clearance required to view unequipped gadgets]</h4>
     {% endif %}
 
-
-  </section>
 
   </section>
   

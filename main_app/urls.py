@@ -2,10 +2,10 @@ from django.urls import path
 from . import views # Import views to connect routes to view functions
 
 urlpatterns = [
+    # Main pages
     path('', views.Home.as_view(), name='home'),
     path('about/', views.about, name='about'),
     
-    # Replace 'detail' with something like <int:agent_id> when database is created
     
     
     # Agent routes
@@ -16,13 +16,6 @@ urlpatterns = [
     path('agents/create/', views.AgentCreate.as_view(), name='agent-create'),
     path('agents/<int:pk>/update/', views.AgentUpdate.as_view(), name='agent-update'),
     path('agents/<int:pk>/delete/', views.AgentDelete.as_view(), name='agent-delete'),
-    
-    # Agent skills route
-    # path(
-    # 'agents/<int:agent_id>/add-skill/', 
-    # views.add_skill, 
-    # name='add-skill'
-    # ),
     
     # Gadget Routes
     path('gadgets/', views.gadget_index, name='gadget-index'),

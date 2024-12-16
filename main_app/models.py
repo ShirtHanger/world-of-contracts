@@ -1,22 +1,31 @@
-from django.db import models # Imports models class so you can create API classes
-from django.urls import reverse 
+from django.db import models # Imports models class so you can create class models
+from django.urls import reverse # Function to find link of particular instance
 from datetime import date
-import random #I think this will let me randomize defaults
+import random # Randomize defaults
 
-# Create your models here.
-
-# Import the default User model
+# Import model class and the default User model
 from django.contrib.auth.models import User
-
 from django.db import models
-
-# hidden_values = ('[REDACTED]', '[DATA EXPUNGED], [Classified]')
-# default='[REDACTED]'
-# default=random.choice(hidden_values)
 
 # Unrequired values will be [REDACTED] if not provided
 def expunge_data():
-    hidden_values = ('[REDACTED]', '[DATA EXPUNGED]', '[Classified]', '[Undisclosed]', '[Clearence Required]')
+    hidden_values = (
+        '[REDACTED]', 
+        '[DATA EXPUNGED]', 
+        '[CLASSIFIED]', 
+        '[UNDISCLOSED]', 
+        '[CLEARANCE REQUIRED]', 
+        '[ACCESS DENIED]', 
+        '[CONFIDENTIAL]', 
+        '[SENSITIVE INFORMATION]', 
+        '[SECURED]', 
+        '[TOP SECRET]', 
+        '[INTERNAL USE ONLY]', 
+        '[PROTECTED DATA]', 
+        '[NOT AVAILABLE]', 
+        '[RESTRICTED]', 
+        '[FORBIDDEN]'
+    )
     expunged_data = random.choice(hidden_values)
     return expunged_data
 
@@ -24,7 +33,7 @@ REDACTED_LABEL = expunge_data()
 
 
 
-# For planned 'Skill' one-to-many relationship
+# For planned 'Skill' model, one-to-many relationship to agent. Not implemented yet
 AGENT_SKILLS = (
     ('E', 'Espionage'),
     ('A', 'Assassination'),
@@ -53,6 +62,7 @@ AGENT_TYPES = (
     ('T', 'Tech Specialist'),
     ('P', 'Sleeper Agent'),
 )
+
 AGENT_EXPERIENCE = (
     ('N', 'Novice'),
     ('I', 'Intermediate'),
@@ -60,7 +70,6 @@ AGENT_EXPERIENCE = (
     ('E', 'Expert'),
     ('M', 'Master')
 )
-
 
 AGENT_RACES = (
     ('R', REDACTED_LABEL), # Redacted default value
@@ -84,6 +93,7 @@ MISSION_URGENCIES = (
     ('C', 'Critical'),
     ('E', 'Emergency'),
 )
+
 MISSION_TYPES = (
     ('U', 'Unspecified'), # Redacted default value
     ('R', 'Reconnaissance'),
@@ -135,6 +145,7 @@ class Gadget(models.Model):
     manufacturer = models.CharField(max_length=100)
     
     user = models.ForeignKey(User, on_delete=models.CASCADE) # User that created gadget
+    # CASCADE will auto delete all missions made by a user when they delete their account
 
     def __str__(self):
         return f'({self.name} - {self.get_type_display()})'
@@ -176,17 +187,6 @@ class Agent(models.Model):
     height_cm = models.IntegerField(default=random.randint(150, 200))
     weight_kg = models.IntegerField(default=random.randint(50, 100))
     
-    place_of_birth = models.CharField(max_length=100, default=expunge_data())
-    region = models.CharField(max_length=100, default=expunge_data())
-
-    
-    tagline = models.CharField(max_length=250)
-    description = models.TextField(max_length=5000, default=expunge_data())
-    
-    previous_agency = models.CharField(max_length=100, default=expunge_data())
-    
-    user = models.ForeignKey(User, on_delete=models.CASCADE) # User that created agent
-    
     race_or_ethnicity = models.CharField( # Limited choices
         max_length=100, 
         # add the 'choices' field option for the AGENT_RACES tuple
@@ -195,8 +195,16 @@ class Agent(models.Model):
         default=AGENT_RACES[0][0]
     )
     
+    place_of_birth = models.CharField(max_length=100, default=expunge_data())
+    region = models.CharField(max_length=100, default=expunge_data())
+
+    tagline = models.CharField(max_length=250)
+    description = models.TextField(max_length=5000, default=expunge_data()) # Make these very, very long and descriptive
     
-    # missions = models.ManyToManyField(Mission) # Must define mission above agent for this to work
+    previous_agency = models.CharField(max_length=100, default=expunge_data())
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE) # User that created agent
+    # CASCADE will auto delete all agents made by a user when they delete their account
     
     gadgets = models.ManyToManyField(Gadget) # Must define gadget above agent for this to work
     
@@ -209,7 +217,7 @@ class Agent(models.Model):
         # Use the 'reverse' function to dynamically find the URL for viewing this agent's details
         return reverse('agent-detail', kwargs={'agent_id': self.id})
 
-
+""" EXTRA MODEL - Missions """
 class Mission (models.Model):
     
     code_name = models.CharField(max_length=255)
@@ -217,6 +225,13 @@ class Mission (models.Model):
     location = models.CharField(max_length=255, default=expunge_data()) 
     agents = models.ManyToManyField(Agent) # Must define agent above mission for this to work
     objective = models.CharField(max_length=255, default=expunge_data())
+    
+    mission_type = models.CharField( # Limited choices
+        max_length=1, 
+        choices=MISSION_TYPES,
+        # Default = Unspecified
+        default=MISSION_TYPES[0][0]
+    )
     
     urgency = models.CharField( # Limited choices
         max_length=1, 
@@ -226,15 +241,11 @@ class Mission (models.Model):
     ) 
     
     client = models.CharField(max_length=255)  
-    mission_type = models.CharField( # Limited choices
-        max_length=1, 
-        choices=MISSION_TYPES,
-        # Default = Unspecified
-        default=MISSION_TYPES[0][0]
-    )
-    date = models.DateField()  # Consider removing if issues with code
+    
+    date = models.DateField() 
     
     user = models.ForeignKey(User, on_delete=models.CASCADE) # User that created mission
+    # CASCADE will auto delete all missions made by a user when they delete their account
 
     def __str__(self):
         return f"{self.code_name} - {self.get_mission_type_display()} - {self.location} ({self.get_urgency_display()})"
@@ -244,6 +255,7 @@ class Mission (models.Model):
         # Use the 'reverse' function to dynamically find the URL for viewing this mission's details
         return reverse('mission-detail', kwargs={'mission_id': self.id})
     
+    # Sorts all missions by most recent
     class Meta:
         ordering = ['-date']
         

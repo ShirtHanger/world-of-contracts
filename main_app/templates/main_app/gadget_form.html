@@ -6,14 +6,12 @@
 {% block content %}
 
 <div class="page-header">
-  <!-- Check if a gadget object exists to determine if we're editing or creating -->
   {% if gadget %}
     <h1>Edit {{ gadget.name }}</h1>
-    <!-- This works too (<h1>Edit {{ object.name }}</h1>) -->
   {% else %}
     <h1>Create a Gadget</h1>
   {% endif %}
-  <img src="" alt="A toolbox or holster" />
+  <img src="{% static 'images/pistol.svg' %}" alt="Pistol" />
 </div>
 
 <!-- No need to create a form! Handled by Django with this boilerplate! -->

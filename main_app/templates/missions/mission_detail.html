@@ -5,7 +5,7 @@
 {% endblock %} 
 {% block content %}
 
-<section class="agent-container">
+<section class="object-container">
   
   <div class="object-details">
 
@@ -72,12 +72,13 @@
     {% endif %}
 
     <!-- Items associated with this specific mission -->
-<div class="agents-container">
+<div class="related-objects-container">
 
     <!-- Mission agents -->
-    <section class="agents">
+    <section class="related-objects">
       <div class="object-title">
-        <h2>Your assets</h2>
+        <h2>Global Assets</h2>
+        <img src="{% static 'images/bw-globe.svg' %}" alt="A Globe" />
       </div>
   
       <h3>Agents assigned to {{ mission.code_name }}</h3>
@@ -98,7 +99,7 @@
             </div>
           {% endfor %} 
         {% else %}
-          <p class="no-agents">No agents assigned to {{mission.code_name}}</p>
+          <p class="no-related-objects">No agents assigned to {{mission.code_name}}</p>
         {% endif %}
       </div>
   

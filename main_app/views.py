@@ -1,17 +1,15 @@
 from django.shortcuts import render, redirect
-# Import login functionality
-from django.contrib.auth.views import LoginView
-# Import Class Based View CRUD stuff
+# Class Based View CRUD stuff
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Default view templates
 from django.views.generic import ListView, DetailView
 
 # For login-signup stuff
+from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-# For login protected routes
+# For protected routes
 from django.contrib.auth.decorators import login_required 
-# Import the mixin for class-based view protection
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Import HttpResponse to send placeholder responses
@@ -19,29 +17,25 @@ from django.http import HttpResponse
 
 # Import Models
 from .models import Agent, Gadget, Mission
-# Import form for new skills for agent
-from .forms import AgentForm, GadgetForm, MissionForm#, SkillForm
+# Form for Agent, Gadget, and Mission models
+from .forms import AgentForm, GadgetForm, MissionForm
 
+# Home pahe
 class Home(LoginView):
     template_name = 'home.html'
 
 def about(request):
     return render(request, 'about.html')
 
-# @login_required
+""" AGENT SHOW PAGES """
+
+
+""" Public routes """
+
 def agent_index(request):
     agents = Agent.objects.all() 
     return render(request, 'agents/agent_index.html', {'agents': agents})
 
-@login_required
-def your_agent_index(request):
-    agents = Agent.objects.filter(user=request.user)
-    # You could also retrieve the logged in user's agents like this
-    # agents = request.user.agent_set.all()
-    return render(request, 'agents/agent_index.html', { 'agents': agents })
-
-
-# @login_required
 def agent_detail(request, agent_id):
     agent = Agent.objects.get(id=agent_id)
     gadgets_agent_doesnt_own = Gadget.objects.exclude(id__in = agent.gadgets.all().values_list('id')) # Fetch gadgets this agent DOESNT have
@@ -50,10 +44,30 @@ def agent_detail(request, agent_id):
         'gadgets': gadgets_agent_doesnt_own,
         })
     
-# @login_required
+
+""" Protected routes """
+@login_required
+def your_agent_index(request):
+    agents = Agent.objects.filter(user=request.user)
+    # You could also retrieve the logged in user's agents like this
+    # agents = request.user.agent_set.all()
+    return render(request, 'agents/agent_index.html', { 'agents': agents })
+
+    
+""" GADGET SHOW PAGES """
+
+
+""" Public routes """
 def gadget_index(request):
     gadgets = Gadget.objects.all() 
     return render(request, 'gadgets/gadget_index.html', {'gadgets': gadgets})
+
+def gadget_detail(request, gadget_id):
+    gadget = Gadget.objects.get(id=gadget_id)
+    return render(request, 'gadgets/gadget_detail.html', {
+        'gadget': gadget
+        })
+""" Protected routes """
 
 @login_required
 def your_gadget_index(request):
@@ -63,28 +77,15 @@ def your_gadget_index(request):
     return render(request, 'gadgets/gadget_index.html', { 'gadgets': gadgets })
 
     
-# @login_required
-def gadget_detail(request, gadget_id):
-    gadget = Gadget.objects.get(id=gadget_id)
-    return render(request, 'gadgets/gadget_detail.html', {
-        'gadget': gadget
-        })
-    
-# @login_required
+
+""" MISSION SHOW PAGES """
+
+
+""" Public routes """
 def mission_index(request):
     missions = Mission.objects.all() 
     return render(request, 'missions/mission_index.html', {'missions': missions})
-    
 
-@login_required
-def your_mission_index(request):
-    missions = Mission.objects.filter(user=request.user)
-    # You could also retrieve the logged in user's missions like this
-    # missions = request.user.mission_set.all()
-    return render(request, 'missions/mission_index.html', { 'missions': missions })
-
-    
-# @login_required
 def mission_detail(request, mission_id):
     mission = Mission.objects.get(id=mission_id)
     # agents = Agent.objects.all() 
@@ -93,9 +94,16 @@ def mission_detail(request, mission_id):
         'mission': mission,
         'agents': unassigned_agents
         })
-    
-    
-# SIGN UP FUNCTIONALITY
+""" Protected routes """
+
+@login_required
+def your_mission_index(request):
+    missions = Mission.objects.filter(user=request.user)
+    # You could also retrieve the logged in user's missions like this
+    # missions = request.user.mission_set.all()
+    return render(request, 'missions/mission_index.html', { 'missions': missions })
+  
+# SIGN UP ROUTE
 def signup(request):
     error_message = ''
     if request.method == 'POST':
@@ -116,18 +124,15 @@ def signup(request):
     return render(request, 'signup.html', context)
 
 
-""" These will automatically handle CRUD form logic! """
+""" 
+Forms imported from forms.py. 
+These will automatically handle CRUD form logic! 
+"""
 
 """ AGENT CRUD """
 class AgentCreate(LoginRequiredMixin, CreateView):
     model = Agent
-    # fields = '__all__'
-    form_class = AgentForm # Shows form of all properties, including owned user
-    # Bottom excludes user
-    # fields = ['code_name', 'real_name', 'agent_type', 'experience_level', 
-    #           'gender', 'age', 'height_cm', 'weight_kg',
-    #           'place_of_birth', 'region', 
-    #           'tagline', 'description', 'previous_agency']
+    form_class = AgentForm 
     
     # This inherited method is called when a
     # valid agent form is being submitted
@@ -139,13 +144,7 @@ class AgentCreate(LoginRequiredMixin, CreateView):
     
 class AgentUpdate(LoginRequiredMixin, UpdateView):
     model = Agent
-    # fields = '__all__'
     form_class = AgentForm
-    # Can disallow updating of a field by excluding it
-    # fields = ['code_name', 'real_name', 'agent_type', 'experience_level', 
-    #           'gender', 'age', 'height_cm', 'weight_kg',
-    #           'place_of_birth', 'region', 
-    #           'tagline', 'description', 'previous_agency']
 
 class AgentDelete(LoginRequiredMixin, DeleteView):
     model = Agent
@@ -160,10 +159,8 @@ class GadgetDetail(LoginRequiredMixin, DetailView):
     model = Gadget
     
 # Gadget CRUD
-
 class GadgetCreate(LoginRequiredMixin, CreateView):
     model = Gadget
-    # fields = '__all__'
     form_class = GadgetForm
     def form_valid(self, form):
         # Automatically assign the logged in user (self.request.user)
@@ -173,7 +170,6 @@ class GadgetCreate(LoginRequiredMixin, CreateView):
 
 class GadgetUpdate(LoginRequiredMixin, UpdateView):
     model = Gadget
-    # fields = '__all__'
     form_class = GadgetForm
 
 class GadgetDelete(LoginRequiredMixin, DeleteView):
@@ -192,7 +188,6 @@ class MissionDetail(LoginRequiredMixin, DetailView):
 
 class MissionCreate(LoginRequiredMixin, CreateView):
     model = Mission
-    # fields = '__all__'
     form_class = MissionForm
     def form_valid(self, form):
         # Automatically assign the logged in user (self.request.user)
@@ -202,7 +197,6 @@ class MissionCreate(LoginRequiredMixin, CreateView):
 
 class MissionUpdate(LoginRequiredMixin, UpdateView):
     model = Mission
-    # fields = '__all__'
     form_class = MissionForm
 
 class MissionDelete(LoginRequiredMixin, DeleteView):
@@ -215,44 +209,25 @@ class MissionDelete(LoginRequiredMixin, DeleteView):
 # Agent-Gadget association and removal
 @login_required
 def associate_gadget(request, agent_id, gadget_id):
-    # Note that you can pass a gadget's id instead of the whole object
+    
     Agent.objects.get(id=agent_id).gadgets.add(gadget_id)
     return redirect('agent-detail', agent_id=agent_id)
 
 @login_required
 def remove_gadget(request, agent_id, gadget_id):
-    # Look up the agent
-    # Look up the gadget
-    # Remove the gadget from the agent
+    
     Agent.objects.get(id=agent_id).gadgets.remove(gadget_id)
     return redirect('agent-detail', agent_id=agent_id)
 
 # Mission-Agent association and removal
 @login_required
 def associate_agent(request, mission_id, agent_id):
-    # Note that you can pass a gadget's id instead of the whole object
+    
     Mission.objects.get(id=mission_id).agents.add(agent_id)
     return redirect('mission-detail', mission_id=mission_id)
 
 @login_required
 def remove_agent(request, mission_id, agent_id):
-    # Look up the mission
-    # Look up the agent
-    # Remove the agent from the mission
+    
     Mission.objects.get(id=mission_id).agents.remove(agent_id)
     return redirect('mission-detail', mission_id=mission_id)
-
-# Agent-Mission association and removal
-# @login_required
-# def associate_mission(request, agent_id, mission_id):
-#     # Note that you can pass a mission's id instead of the whole object
-#     Agent.objects.get(id=agent_id).missions.add(mission_id)
-#     return redirect('agent-detail', agent_id=agent_id)
-
-# @login_required
-# def remove_mission(request, agent_id, mission_id):
-#     # Look up the agent
-#     # Look up the mission
-#     # Remove the mission from the agent
-#     Agent.objects.get(id=agent_id).missions.remove(mission_id)
-#     return redirect('agent-detail', agent_id=agent_id)

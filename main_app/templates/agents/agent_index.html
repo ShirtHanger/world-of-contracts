@@ -7,70 +7,51 @@
 
 <section class="page-header">
   <h1>Agent Files</h1>
-  <img src="" alt="Sunglasses! Put sun glasses!" />
-  <img src="" alt="A dagger probably" />
-  <img src="" alt="A gun maybe" />
-  <img src="" alt="Some roman symbol" />
+  <div class="image-header">
+    <img src="{% static 'images/shades.svg' %}" alt="Shades" />
+    <img src="{% static 'images/blade-symbol.svg' %}" alt="Call to arms (Blade symbol)" />
+    <img src="{% static 'images/magnifying-glass.svg' %}" alt="A magnifying glass" />
+    <img src="{% static 'images/pistol.svg' %}" alt="Pistol" />
+    <img src="{% static 'images/laptop.svg' %}" alt="Laptop" />
+    <img src="{% static 'images/bw-globe.svg' %}" alt="A Globe" />
+  </div>
 </section>
 
 <section class="card-container">
-  {% for agent in agents %} <!-- For loop, maps all agent data -->
+  {% for agent in agents %} <!-- For loop, maps all agent data into neat cards-->
 
     <article class="card">
-      <!-- Hard coded URLS (<a href="/agents/{{ agent.id }}">) not reccomended -->
-      
-       
-          
-            <!-- 
-            Double curly braces means page is rendering PYTHON syntax, like react 
-            -->
-            <a href="{% url 'agent-detail' agent.id %}">
-              <div class="card-title">
-                
-                  <h2>[{{ agent.code_name }}]</h2>
-                
-              </div>
-            </a>
+
+      <a href="{% url 'agent-detail' agent.id %}">
+        <div class="card-title">
+            <h2>[{{ agent.code_name }}]</h2>
+        </div>
+      </a>
+
+      <div class="card-data-preview">
+        <h3>{{ agent.get_experience_level_display }} {{ agent.get_agent_type_display }}</h3>
+        <p>{{ agent.tagline }}</p>
+
+        <small>File A-{{ agent.id }}</small>
+        
+
+      <!-- Update and delete agent -->
+      {% if user and agent.user.id == user.id %}
+      <p class="authorized-data-label">[Editing privileges granted, {{user.username}}]</p>
+        <div class="card-actions">
+          <a href="{% url 'agent-update' agent.id %}" class="btn warn">Edit</a>
+          <a href="{% url 'agent-delete' agent.id %}" class="btn danger">Delete</a>
+        </div>
+      {% elif user and user.is_superuser %}
+      <p class="admin-data-label">[Admin privileges granted, {{user.username}}]</p>
+        <div class="card-actions">
+          <a href="{% url 'agent-update' agent.id %}" class="btn warn">Edit</a>
+          <a href="{% url 'agent-delete' agent.id %}" class="btn danger">Delete</a>
+        </div>
+      {% else %}
+        <p class="redacted-data-label">[Editing privileges denied by file owner ({{agent.user.username}})]</p>
+      {% endif %}
   
-            <div class="card-data-preview">
-              <h3>{{ agent.get_experience_level_display }} {{ agent.get_agent_type_display }}</h3>
-              <p>{{ agent.tagline }}</p>
-              
-    
-              <small>Agent File ID #{{ agent.id }}</small>
-              
-  
-            <!-- Update and delete agent -->
-            {% if user and agent.user.id == user.id %}
-            <p class="authorized-data-label">[Editing privileges granted, {{user.username}}]</p>
-              <div class="card-actions">
-                <a href="{% url 'agent-update' agent.id %}" class="btn warn">Edit</a>
-                <a href="{% url 'agent-delete' agent.id %}" class="btn danger">Delete</a>
-              </div>
-            {% elif user and user.is_superuser %}
-            <p class="admin-data-label">[Admin privileges granted, {{user.username}}]</p>
-              <div class="card-actions">
-                <a href="{% url 'agent-update' agent.id %}" class="btn warn">Edit</a>
-                <a href="{% url 'agent-delete' agent.id %}" class="btn danger">Delete</a>
-              </div>
-            {% else %}
-              <p class="redacted-data-label">[Editing privileges denied by file owner ({{agent.user.username}})]</p>
-            {% endif %}
-
-              
-
-          </div>
-       
-          
-    
-
-           <!-- Conditional rendering -->
-          <!-- {% if agent.property %} -->
-          <!-- {% else %} -->
-          <!-- {% endif %} Stops If/Else blocks  -->
-
-
-      
     </article>
   {% endfor %}
 </section>

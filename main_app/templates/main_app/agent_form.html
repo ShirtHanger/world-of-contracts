@@ -6,14 +6,12 @@
 {% block content %}
 
 <div class="page-header">
-  <!-- Check if a agent object exists to determine if we're editing or creating -->
   {% if agent %}
     <h1>Edit {{ agent.code_name }}</h1>
-    <!-- This works too (<h1>Edit {{ object.code_name }}</h1>) -->
   {% else %}
     <h1>Create an Agent</h1>
   {% endif %}
-  <img src="" alt="A computer" />
+  <img src="{% static 'images/laptop.svg' %}" alt="Laptop" />
 </div>
 
 <!-- No need to create a form! Handled by Django with this boilerplate! -->

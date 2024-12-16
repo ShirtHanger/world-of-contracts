@@ -7,10 +7,14 @@
 
 <section class="page-header">
     <h1>Mission Files</h1>
-    <img src="" alt="Sunglasses! Put sun glasses!" />
-    <img src="" alt="A dagger probably" />
-    <img src="" alt="A gun maybe" />
-    <img src="" alt="Some roman symbol" />
+      <div class="image-header">
+        <img src="{% static 'images/shades.svg' %}" alt="Shades" />
+        <img src="{% static 'images/blade-symbol.svg' %}" alt="Call to arms (Blade symbol)" />
+        <img src="{% static 'images/magnifying-glass.svg' %}" alt="A magnifying glass" />
+        <img src="{% static 'images/pistol.svg' %}" alt="Pistol" />
+        <img src="{% static 'images/laptop.svg' %}" alt="Laptop" />
+        <img src="{% static 'images/bw-globe.svg' %}" alt="A Globe" />
+      </div>
   </section>
 
 <section class="card-container">
@@ -19,9 +23,7 @@
 
       <a href="{% url 'mission-detail' mission.id %}">
         <div class="card-title">
-          
             <h2>[{{ mission.code_name }}]</h2>
-          
         </div>
       </a>
 
@@ -29,7 +31,7 @@
         <h3>{{ mission.get_urgency_display }} - {{ mission.get_mission_type_display }}</h3>
         <p>[{{ mission.location }}]</p>
 
-        <small>Mission File ID #{{ mission.id }}</small>
+        <small>File M-{{ mission.id }}</small>
 
         {% if user and mission.user.id == user.id %}
         <p class="authorized-data-label">[Editing privileges granted, {{user.username}}]</p>
@@ -47,7 +49,6 @@
           <p class="redacted-data-label">[Editing privileges denied by file owner ({{mission.user.username}})]</p>
         {% endif %}
         
-      </div>
     </article>
   {% endfor %}
 </section>
