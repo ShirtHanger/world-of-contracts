@@ -39,7 +39,7 @@ td > * {
   border-radius: 5px;
   background: #2b2b2b;
   color: #fff;
-  transition: border-color 0.5s, box-shadow 0.5s;
+  transition: border-color 0.4s, box-shadow 0.4s;
 }
 
 td > textarea {
@@ -60,7 +60,7 @@ td > *:hover {
 }
 
 .btn.submit {
-  background: #e63946;
+  background: crimson;
   color: #fff;
   font-size: 1.2rem;
   font-weight: bold;
@@ -68,7 +68,7 @@ td > *:hover {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color ease-in-out 0.5s, color ease-in-out 0.5s, transform 0.5s;
+  transition: background-color ease-in-out 0.4s, color ease-in-out 0.4s, transform 0.4s;
 }
 
 .btn.submit:hover {
@@ -94,7 +94,7 @@ tr.form-group td > * {
   border-radius: 5px;
   background: #2b2b2b;
   color: #fff;
-  transition: border-color 0.5s, box-shadow 0.5s;
+  transition: border-color 0.4s, box-shadow 0.4s;
 }
 
 tr.form-group td > *:focus {

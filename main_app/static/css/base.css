@@ -20,7 +20,7 @@ main {
     transform: translateX(-20px);
     animation: fadeInBody 0.8s ease-in-out forwards;
     animation-duration: 0.4s;
-    animation-delay: 0.5s;
+    animation-delay: 0.4s;
 }
 
 @keyframes fadeInBody {
@@ -39,28 +39,46 @@ img {
     height: auto;
     margin: 1rem;
     filter: grayscale(100%) brightness(70%);
-    transition: filter 0.5s ease-in-out-in-out;
+    transition: filter 0.4s ease-in-out-in-out;
 }
 
 img:hover {
     filter: grayscale(0%) brightness(100%);
 }
 
-
-
 /* Header for top of page */
 .header-title-container {
+    position: relative;
     font-family: "Black Ops One", sans-serif;
     margin: 2rem 0;
-    background-color: #2c2c2c;
     border-radius: 10px;
     border: 2px inset gold; 
     padding: 1rem 2rem;  
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-    transition: background-color 0.5s ease-in-out;
-    
+    overflow: hidden;
+    background-color: transparent;
+    transition: background-color 0.4s ease-in-out;
 }
 
+.header-title-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(73, 73, 73); 
+    z-index: -1; 
+    transition: transform 0.4s ease-in-out;
+}
+
+.header-title-container:hover::before {
+    transform: translateX(100%);
+}
+
+.header-title-container:hover {
+    background-color: #2c2c2c;
+}
 
 .header-title-container h1 {
     font-size: 3rem;
@@ -69,25 +87,7 @@ img:hover {
     border: 2px inset;
     background-color: #1b1b1b;
     margin: 0;
-    transition: color ease-in-out 0.5s, background-color 0.5s ease-in-out;
-}
-
-.header-title-container h2 {
-    
-    font-size: 1.2rem;
-    color: gold;
-    border-radius: 10px;
-    border: 1px solid #333;
-    margin: 0.5rem 0 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    opacity: 0;     
-    transition: transform ease-in-out 0.5s, opacity 0.5s, visibility 0.5s;
-    background: linear-gradient(#1b1b1b, #2c2c2c);         
-}
-
-.header-title-container:hover {
-    
-    background-color: rgb(73, 73, 73);
+    transition: color 0.4s ease-in-out, background-color 0.4s ease-in-out;
 }
 
 .header-title-container h1:hover {
@@ -95,8 +95,20 @@ img:hover {
     background-color: rgb(73, 73, 73);
 }
 
-.header-title-container h2:hover {
-    opacity: 1;           
+.header-title-container h2 {
+    font-size: 1.2rem;
+    color: gold;
+    border-radius: 10px;
+    border: 1px solid #333;
+    margin: 0.5rem 0 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    opacity: 0;     
+    transition: transform 0.4s ease-in-out, opacity 0.4s, visibility 0.4s;
+    background: linear-gradient(#1b1b1b, #2c2c2c);         
+}
+
+.header-title-container:hover h2 {
+    opacity: 1;
 }
 
 .page-header {
@@ -113,13 +125,37 @@ img:hover {
 }
 
 .link-header {
-    background-color: #1b1b1b;
+    position: relative; 
+    overflow: hidden;
+    background-color: transparent;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+
     border-radius: 10px;
     border: 2px inset gold;
     padding: 1rem;
-    
-    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
     margin-bottom: 0;
+    
+}
+
+.link-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%; /* Start from outside the left */
+    width: 100%;
+    height: 100%;
+    background-color: crimson; /* Target background color on hover */
+    z-index: -1; /* Ensure it appears behind the text */
+    transition: transform 0.4s ease-in-out; /* Transition for sliding effect */
+    /* transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out; */
+}
+
+.link-header:hover::before {
+    transform: translateX(100%); 
+}
+
+.link-header:hover {
+    color: silver;
 }
 
 section .link-header {
@@ -127,17 +163,13 @@ section .link-header {
     margin: 0;
 }
 
-.link-header:hover {
-    background-color: crimson;
-    color: silver;
-}
 
 /* Links */
 a {
     text-decoration: none;
     color: crimson;
     font-weight: bold;
-    transition: color 0.5s ease-in-out;
+    transition: color 0.4s ease-in-out;
 }
 
 a:hover {
@@ -154,49 +186,89 @@ ul {
 }
 
 li {
-    transition: background-color 0.5s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+    border: 2px inset green;
+    border-radius: 10px;
+}
+
+li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: crimson;
+    z-index: -1; /* Background slide effect appears BEFORE text */
+    transition: transform 0.4s ease-in-out;
+}
+
+li:hover::before {
+    transform: translateX(100%);
 }
 
 li:hover {
-    background-color: green;
-    border-radius: 5px;
+    color: whitesmoke;
 }
+
+
 
 /* Nav Bar and Object detail Cards */
 .links-card {
+    display: flex;
+    flex-direction: column;
     border: 2px inset tomato;
     padding: 1vw;
     margin: 1vw;
     border-radius: 10px;
     background-color: #1b1b1b;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transition: background-color 0.4s ease-in-out, transform 0.4s ease-in-out;
 }
 
 .links-card:hover {
-    background-color: springgreen;
-    transform: scale(1.05); /* Consider removing all transform scales, not that sleek and no nonsense IMO */
+    /* background-color: springgreen; */
+    transform: scale(1.01); /* Consider removing all transform scales, not that sleek and no nonsense IMO */
 }
 
 /* Buttons by both class and function */
 button, .btn {
-    background-color: darkmagenta;
+    position: relative; 
+    background-color: darkmagenta; 
     border: 2px groove yellow;
-    /* color: white; */
     font-size: 1rem;
-     /* Consider changing to something else */
     padding: 0.75rem 1.5rem;
     border-radius: 5px;
     cursor: pointer;
-    transition: transform 0.5s ease-in-out, background-color 0.5s ease-in-out;
+    transition: transform 0.4s ease-in-out; 
     margin: 2vw;
+    overflow: hidden; 
+}
+
+button::before, .btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%; 
+    width: 100%;
+    height: 100%;
+    background-color: goldenrod; 
+    z-index: -1; 
+    transition: transform 0.4s ease-in-out; 
+}
+
+button:hover::before, .btn:hover::before {
+    transform: translateX(100%); 
 }
 
 button:hover, .btn:hover {
-    transform: scale(1.1);
-    background-color: goldenrod;
-    color: #1b1b1b;
+    transform: scale(1.01); 
+    color: #1b1b1b; 
 }
+
 
 .redacted-data-label {
     display: inline-block;
@@ -209,7 +281,7 @@ button:hover, .btn:hover {
     border-radius: 5px;
     text-transform: uppercase;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
 }
 
 .redacted-data-label:hover {
@@ -228,7 +300,7 @@ button:hover, .btn:hover {
     border-radius: 5px;
     text-transform: uppercase;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
 }
 
 .authorized-data-label:hover {
@@ -247,7 +319,7 @@ button:hover, .btn:hover {
     border-radius: 5px;
     text-transform: uppercase;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
 }
 
 .admin-data-label:hover {
@@ -264,6 +336,9 @@ button:hover, .btn:hover {
 
     .links-card {
         margin: 1rem 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
     }
 
     button, .btn {
