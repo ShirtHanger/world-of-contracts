@@ -31,7 +31,7 @@
 .card-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     /* Spaces each card */
     gap: 0.5rem;
     padding: 0;
@@ -127,11 +127,7 @@
 }
 
 /* Edit and Delete buttons */
-.card-actions {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 1rem;
-}
+
 
 .btn {
     display: inline-block;

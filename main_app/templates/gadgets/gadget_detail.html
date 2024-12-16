@@ -83,14 +83,14 @@
     {% if user and gadget.user.id == user.id %}
     <p class="authorized-data-label">[Editing privileges granted, {{user.username}}]</p>
       <div class="card-actions">
-        <a href="{% url 'gadget-update' gadget.id %}" class="btn warn">Edit</a>
-        <a href="{% url 'gadget-delete' gadget.id %}" class="btn danger">Delete</a>
+        <a href="{% url 'gadget-update' gadget.id %}" class="btn warn"><img src="{% static 'images/pencil.svg' %}" alt="Edit"></img></a>
+        <a href="{% url 'gadget-delete' gadget.id %}" class="btn danger"><img src="{% static 'images/trash.svg' %}" alt="Delete"></img></a>
       </div>
     {% elif user and user.is_superuser %}
     <p class="admin-data-label">[Admin privileges granted, {{user.username}}]</p>
       <div class="card-actions">
-        <a href="{% url 'gadget-update' gadget.id %}" class="btn warn">Edit</a>
-        <a href="{% url 'gadget-delete' gadget.id %}" class="btn danger">Delete</a>
+        <a href="{% url 'gadget-update' gadget.id %}" class="btn warn"><img src="{% static 'images/pencil.svg' %}" alt="Edit"></img></a>
+        <a href="{% url 'gadget-delete' gadget.id %}" class="btn danger"><img src="{% static 'images/trash.svg' %}" alt="Delete"></img></a>
       </div>
     {% else %}
       <p class="redacted-data-label">[Editing privileges denied by file owner ({{gadget.user.username}})]</p>
