@@ -19,8 +19,18 @@
         
         <ul>
           <div class="links-card">
+            {% if user.is_authenticated %}
             <li>{{ mission.get_urgency_display }}</li>
             <li>{{ mission.get_mission_type_display }}</li>
+            {% else %}
+            <h4 class="redacted-data-label">[Clearance required]</h4>
+    <ul>
+        <div class="links-card">
+            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+        </div>
+    </ul>
+            {% endif %}
           </div>
         </ul>
         
@@ -28,7 +38,17 @@
 
       <section class="info-container">
         <img src="{% static 'images/globe.png' %}" alt="Globe">
+        {% if user.is_authenticated %}
         <h3><small>{{ mission.objective }}</small></h3>
+        {% else %}
+        <h4 class="redacted-data-label">[Clearance required]</h4>
+    <ul>
+        <div class="links-card">
+            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+        </div>
+    </ul>
+        {% endif %}
       </section>
   
       <section class="stats-container">
@@ -38,9 +58,19 @@
   
           <ul>
             <div class="links-card">
+              {% if user.is_authenticated %}
               <li>Client: {{ mission.client }}</li>
               <li>{{ mission.location }}</li>
               <li>Date: {{ mission.date }}</li>
+              {% else %}
+              <h4 class="redacted-data-label">[Clearance required]</h4>
+    <ul>
+        <div class="links-card">
+            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+        </div>
+    </ul>
+              {% endif %}
             </div>
           </ul>
         </div>
@@ -50,7 +80,17 @@
     </div>
 
     <article class="lore-container">
+      {% if user.is_authenticated %}
       <p>{{ mission.debrief }}</p>
+      {% else %}
+      <h4 class="redacted-data-label">[Clearance required]</h4>
+    <ul>
+        <div class="links-card">
+            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+        </div>
+    </ul>
+      {% endif %}
     </article>
 
     <!-- Update and delete mission -->
@@ -80,7 +120,9 @@
         <h2>Global Assets</h2>
         <img src="{% static 'images/bw-globe.svg' %}" alt="A Globe" />
       </div>
-  
+
+
+      {% if user.is_authenticated %}
       <h3>Agents assigned to {{ mission.code_name }}</h3>
       <div class="card-container">
         {% if mission.agents.count %} 
@@ -103,7 +145,7 @@
         {% endif %}
       </div>
   
-      {% if user.is_authenticated %}
+      
       <h3 class="object-title">Unassigned Agents</h3>
       <div class="card-container">
         {% if agents.count %} 
@@ -128,7 +170,13 @@
         {% endif %}
       </div>
       {% else %}
-      <h4 class="redacted-data-label">[Clearance required to view unassigned agents]</h4>
+      <h4 class="redacted-data-label">[Clearance required]</h4>
+    <ul>
+        <div class="links-card">
+            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+        </div>
+    </ul>
       {% endif %}
   
   

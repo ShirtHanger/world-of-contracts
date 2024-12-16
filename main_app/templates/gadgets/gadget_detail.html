@@ -20,8 +20,17 @@
 
         <ul>
           <div class="links-card">
-            <li>[{{ gadget.manufacturer }}]</li>
-            
+            {% if user.is_authenticated %}
+            <li>Manufactured by: [{{ gadget.manufacturer }}]</li>
+            {% else %}
+            <h4 class="redacted-data-label">[Clearance required]</h4>
+    <ul>
+        <div class="links-card">
+            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+        </div>
+    </ul>
+            {% endif %}
           </div>
         </ul>
       </section> 
@@ -36,8 +45,18 @@
           <h3 class="object-title">Details</h3>
           <ul>
             <div class="links-card">
+              {% if user.is_authenticated %}
               <li> {{gadget.get_type_display}} </li>
               <li> File G-{{gadget.id}} </li>
+              {% else %}
+              <h4 class="redacted-data-label">[Clearance required]</h4>
+    <ul>
+        <div class="links-card">
+            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+        </div>
+    </ul>
+              {% endif %}
             </div>
           </ul>
         </div>
@@ -47,7 +66,17 @@
     </div>
 
     <article class="lore-container">
+      {% if user.is_authenticated %}
       <p>{{ gadget.description }}</p>
+      {% else %}
+      <h4 class="redacted-data-label">[Clearance required]</h4>
+    <ul>
+        <div class="links-card">
+            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+        </div>
+    </ul>
+      {% endif %}
     </article>
 
     <!-- Update and delete gadget -->

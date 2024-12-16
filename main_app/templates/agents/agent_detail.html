@@ -26,11 +26,21 @@
   
           <ul>
             <div class="links-card">
+              {% if user.is_authenticated %}
               <li>Legal name/Alias: {{ agent.real_name }}</li>
               <li>Gender: {{ agent.gender }}</li>
               <li>Age: {{ agent.age }}</li>
               <li>Race/Ethnicity: {{ agent.get_race_or_ethnicity_display }}</li>
               <li>Height/Weight: {{ agent.height_cm }}cm/{{ agent.weight_kg }}kg</li>
+              {% else %}
+              <h4 class="redacted-data-label">[Clearance required]</h4>
+    <ul>
+        <div class="links-card">
+            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+        </div>
+    </ul>
+              {% endif %}
             </div>
           </ul>
         </div>
@@ -48,9 +58,19 @@
         
         <ul>
           <div class="links-card">
+            {% if user.is_authenticated %}
             <li>{{ agent.get_agent_type_display }}</li>
             <li>{{ agent.get_experience_level_display }} asset</li>
             <li>{{ agent.previous_agency }}</li>
+            {% else %}
+            <h4 class="redacted-data-label">[Clearance required]</h4>
+    <ul>
+        <div class="links-card">
+            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+        </div>
+    </ul>
+            {% endif %}
           </div>
         </ul>
         
@@ -62,9 +82,19 @@
   
           <ul>
             <div class="links-card">
+              {% if user.is_authenticated %}
               <li>Region: {{ agent.region }}</li>
               <li>Place of birth: {{ agent.place_of_birth }}</li>
               <li>Previous agency: {{ agent.previous_agency }}</li>
+              {% else %}
+              <h4 class="redacted-data-label">[Clearance required]</h4>
+    <ul>
+        <div class="links-card">
+            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+        </div>
+    </ul>
+              {% endif %}
             </div>
           </ul>
         </div>
@@ -74,7 +104,17 @@
     </div>
 
     <article class="lore-container">
+      {% if user.is_authenticated %}
       <p>{{ agent.description }}</p>
+      {% else %}
+      <h4 class="redacted-data-label">[Clearance required]</h4>
+    <ul>
+        <div class="links-card">
+            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+        </div>
+    </ul>
+      {% endif %}
     </article>
 
     <!-- Update and delete agent -->
@@ -113,6 +153,7 @@
       <img src="{% static 'images/pistol.svg' %}" alt="Pistol" />
     </div>
 
+    {% if user.is_authenticated %}
     <h3>{{ agent.code_name }}'s Gadgets</h3>
     <div class="card-container">
       {% if agent.gadgets.count %} 
@@ -135,7 +176,7 @@
       {% endif %}
     </div>
 
-    {% if user.is_authenticated %}
+    
     <h3 class="object-title">Available Gadgets</h3>
     <div class="card-container">
       {% if gadgets.count %} 
@@ -160,7 +201,13 @@
       {% endif %}
     </div>
     {% else %}
-    <h4 class="redacted-data-label">[Clearance required to view unequipped gadgets]</h4>
+    <h4 class="redacted-data-label">[Clearance required]</h4>
+    <ul>
+        <div class="links-card">
+            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+        </div>
+    </ul>
     {% endif %}
 
 
