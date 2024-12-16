@@ -132,16 +132,6 @@
 /* Add/Remove */
 
 /* Edit and Delete buttons */
-.card-actions {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 1rem;
-}
-
-.card-actions a img {
-    height: 5vh;
-    width: 5vw;
-}
 
 .btn {
     display: inline-block;
@@ -159,6 +149,17 @@
     transform: scale(1.05);
     background: #ffd700;
     color: #000;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.card-actions a img {
+    max-height: 5vh;
+    max-width: 5vw;
 }
 
 /* Mobile */
