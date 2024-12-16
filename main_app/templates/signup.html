@@ -6,17 +6,38 @@
 {% block content %}
 <div class="page-header">
   <h1>Sign Up</h1>
-  
+  <img src="{% static 'images/greek-crown.svg' %}" alt="Greek Crown">
+  <img src="{% static 'images/laptop.svg' %}" alt="Laptop" />
 </div>
 {% if error_message %}
   <p class="redacted-data-label">{{ error_message }}</p>
 {% endif %}
-<form action="" method="post" class="form-container" autocomplete="off">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-  </table>
-  <button type="submit" class="btn submit">Submit!</button>
-</form>
+
+{% if error_message %}
+  <p class="redacted-data-label">{{ error_message }}</p>
+{% endif %}
+
+  <form action="" method="post" class="form-container" autocomplete="off">
+      {% csrf_token %}
+      <table>
+        <tr class="form-group">
+          <td>{{ form.username.label_tag }}</td>
+          <td>{{ form.username }}</td>
+        </tr>
+        <tr class="form-group">
+          <td>{{ form.password1.label_tag }}</td>
+          <td>{{ form.password1 }}</td>
+        </tr>
+        <tr class="form-group">
+          <td>{{ form.password2.label_tag }}</td>
+          <td>{{ form.password2 }}</td>
+        </tr>
+      </table>
+      
+    <button type="submit" class="btn submit">Submit!</button>
+    <p>Already authorized? <a href="{% url 'login' %}">Login</a></p>
+  </form>
+  
+</div>
 
 {% endblock %}

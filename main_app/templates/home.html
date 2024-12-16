@@ -16,6 +16,7 @@
      user that tries to access a protected route back to that route after they log in -->
     <input type="hidden" name="next" value="{{ next }}" />
     <button type="submit" class="btn submit">Login</button>
+    <p>Request authorization: <a href="{% url 'signup' %}">[Signup]</a></p>
   </form>
 </section>
 {% elif user.is_superuser %}
