@@ -33,10 +33,6 @@
 
         <p>{{ gadget.tagline }}</p>
 
-        <small>File G-{{ gadget.id }}</small>
-        
-      
-
       <!-- Update and delete gadget -->
       {% if user and gadget.user.id == user.id %}
       <p class="authorized-data-label">[Editing privileges granted, {{user.username}}]</p>
@@ -53,6 +49,8 @@
       {% else %}
         <p class="redacted-data-label">[Editing privileges denied by file owner ({{gadget.user.username}})]</p>
       {% endif %}
+
+      <p><small>File G-{{ gadget.id }}</small></p>
 
     </article>
   {% endfor %}

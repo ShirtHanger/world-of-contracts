@@ -31,8 +31,6 @@
       <div class="card-data-preview">
         <h3>{{ agent.get_experience_level_display }} {{ agent.get_agent_type_display }}</h3>
         <p>{{ agent.tagline }}</p>
-
-        <small>File A-{{ agent.id }}</small>
         
 
       <!-- Update and delete agent -->
@@ -51,6 +49,8 @@
       {% else %}
         <p class="redacted-data-label">[Editing privileges denied by file owner ({{agent.user.username}})]</p>
       {% endif %}
+
+      <p><small>File A-{{ agent.id }}</small></p>
   
     </article>
   {% endfor %}

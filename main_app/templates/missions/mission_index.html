@@ -28,10 +28,9 @@
       </a>
 
       <div class="card-data-preview">
+        <p>[{{ mission.date }}]</p>
         <h3>{{ mission.get_urgency_display }} - {{ mission.get_mission_type_display }}</h3>
         <p>[{{ mission.location }}]</p>
-
-        <small>File M-{{ mission.id }}</small>
 
         {% if user and mission.user.id == user.id %}
         <p class="authorized-data-label">[Editing privileges granted, {{user.username}}]</p>
@@ -48,6 +47,8 @@
         {% else %}
           <p class="redacted-data-label">[Editing privileges denied by file owner ({{mission.user.username}})]</p>
         {% endif %}
+
+        <p><small>File M-{{ mission.id }}</small></p>
         
     </article>
   {% endfor %}
