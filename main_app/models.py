@@ -152,8 +152,7 @@ class Gadget(models.Model):
 
     # Method gets the URL for a particular gadget instance
     def get_absolute_url(self):
-        return reverse('gadget-detail', kwargs={'pk': self.id})
-
+        return reverse('gadget-detail', kwargs={'gadget_id': self.id})
 
 # Consider adding:
 # Signature gadget (Seperate from gadgets model)
