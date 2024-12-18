@@ -15,19 +15,19 @@
 
       <section class="info-container">
 
-        <h3 class="object-title"> Mission Objective</h3>
+        <h3 class="object-title">Objective</h3>
         
         <ul>
           <div class="links-card">
             {% if user.is_authenticated %}
-            <li>{{ mission.get_urgency_display }}</li>
-            <li>{{ mission.get_mission_type_display }}</li>
+            <li><strong>{{ mission.get_urgency_display }}</strong></li>
+            <li><strong>{{ mission.get_mission_type_display }}</strong></li>
             {% else %}
             <h4 class="redacted-data-label">[Clearance required]</h4>
     <ul>
         <div class="links-card">
-            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
-            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+            <li><a href="{% url 'signup' %}">Request New <strong>(Signup)</strong></a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing <strong>(Login)</strong></a></li>
         </div>
     </ul>
             {% endif %}
@@ -44,8 +44,8 @@
         <h4 class="redacted-data-label">[Clearance required]</h4>
     <ul>
         <div class="links-card">
-            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
-            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+            <li><a href="{% url 'signup' %}">Request New <strong>(Signup)</strong></a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing <strong>(Login)</strong></a></li>
         </div>
     </ul>
         {% endif %}
@@ -54,20 +54,20 @@
       <section class="stats-container">
           
         <div class="stat-card">
-          <h3 class="object-title">Mission Details</h3>
+          <h3 class="object-title">Details</h3>
   
           <ul>
             <div class="links-card">
               {% if user.is_authenticated %}
-              <li>Client: {{ mission.client }}</li>
+              <li><strong>Client:</strong> {{ mission.client }}</li>
               <li>{{ mission.location }}</li>
-              <li>Date: {{ mission.date }}</li>
+              <li><strong>{{ mission.date }}</strong></li>
               {% else %}
               <h4 class="redacted-data-label">[Clearance required]</h4>
     <ul>
         <div class="links-card">
-            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
-            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+            <li><a href="{% url 'signup' %}">Request New <strong>(Signup)</strong></a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing <strong>(Login)</strong></a></li>
         </div>
     </ul>
               {% endif %}
@@ -86,8 +86,8 @@
       <h4 class="redacted-data-label">[Clearance required]</h4>
     <ul>
         <div class="links-card">
-            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
-            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+            <li><a href="{% url 'signup' %}">Request New <strong>(Signup)</strong></a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing <strong>(Login)</strong></a></li>
         </div>
     </ul>
       {% endif %}
@@ -173,8 +173,8 @@
       <h4 class="redacted-data-label">[Clearance required]</h4>
     <ul>
         <div class="links-card">
-            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
-            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+            <li><a href="{% url 'signup' %}">Request New <strong>(Signup)</strong></a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing <strong>(Login)</strong></a></li>
         </div>
     </ul>
       {% endif %}

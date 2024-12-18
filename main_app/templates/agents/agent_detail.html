@@ -27,17 +27,17 @@
           <ul>
             <div class="links-card">
               {% if user.is_authenticated %}
-              <li>Legal name/Alias: {{ agent.real_name }}</li>
-              <li>Gender: {{ agent.gender }}</li>
-              <li>Age: {{ agent.age }}</li>
-              <li>Race/Ethnicity: {{ agent.get_race_or_ethnicity_display }}</li>
-              <li>Height/Weight: {{ agent.height_cm }}cm/{{ agent.weight_kg }}kg</li>
+              <li><strong>Legal name/Alias</strong>: {{ agent.real_name }}</li>
+              <li><strong>Gender</strong>: {{ agent.gender }}</li>
+              <li><strong>Age</strong>: {{ agent.age }}</li>
+              <li><strong>Race/Ethnicity</strong>: {{ agent.get_race_or_ethnicity_display }}</li>
+              <li><strong>Height/Weight</strong>: {{ agent.height_cm }}cm/{{ agent.weight_kg }}kg</li>
               {% else %}
               <h4 class="redacted-data-label">[Clearance required]</h4>
     <ul>
         <div class="links-card">
-            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
-            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+            <li><a href="{% url 'signup' %}">Request New <strong>(Signup)</strong></a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing <strong>(Login)</strong></a></li>
         </div>
     </ul>
               {% endif %}
@@ -51,9 +51,14 @@
         <h3 class="object-title"> Asset Details </h3>
 
           {% if agent.gender == 'Female' or agent.gender == 'female' %}
-          <img src="{% static 'images/JaneDoe.png' %}" alt="agent image">
+          <!-- <img src="{% static 'images/JaneDoe.png' %}" alt="female agent image"> -->
+          <!-- <img src="{% static 'images/jane-doe.png' %}" alt="female agent image"> -->
+          <img src="{% static 'images/anon-female.svg' %}" alt="female agent image">
+          {% elif agent.gender == 'Male' or agent.gender == 'male' %}
+          <!-- <img src="{% static 'images/john-doe.png' %}" alt="male agent image"> -->
+          <img src="{% static 'images/anon-male.svg' %}" alt="male agent image">
           {% else %}
-          <img src="{% static 'images/john-doe.png' %}" alt="agent image">
+          <img src="{% static 'images/question-mark.svg' %}" alt="unknown agent image">
           {% endif %}
         
         <ul>
@@ -66,8 +71,8 @@
             <h4 class="redacted-data-label">[Clearance required]</h4>
     <ul>
         <div class="links-card">
-            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
-            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+            <li><a href="{% url 'signup' %}">Request New <strong>(Signup)</strong></a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing <strong>(Login)</strong></a></li>
         </div>
     </ul>
             {% endif %}
@@ -83,15 +88,15 @@
           <ul>
             <div class="links-card">
               {% if user.is_authenticated %}
-              <li>Region: {{ agent.region }}</li>
-              <li>Place of birth: {{ agent.place_of_birth }}</li>
-              <li>Previous agency: {{ agent.previous_agency }}</li>
+              <li><strong>Region</strong>: {{ agent.region }}</li>
+              <li><strong>Place of birth</strong>: {{ agent.place_of_birth }}</li>
+              <li><strong>Agency</strong>: {{ agent.previous_agency }}</li>
               {% else %}
               <h4 class="redacted-data-label">[Clearance required]</h4>
     <ul>
         <div class="links-card">
-            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
-            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+            <li><a href="{% url 'signup' %}">Request New <strong>(Signup)</strong></a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing <strong>(Login)</strong></a></li>
         </div>
     </ul>
               {% endif %}
@@ -110,8 +115,8 @@
       <h4 class="redacted-data-label">[Clearance required]</h4>
     <ul>
         <div class="links-card">
-            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
-            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+            <li><a href="{% url 'signup' %}">Request New <strong>(Signup)</strong></a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing <strong>(Login)</strong></a></li>
         </div>
     </ul>
       {% endif %}
@@ -204,8 +209,8 @@
     <h4 class="redacted-data-label">[Clearance required]</h4>
     <ul>
         <div class="links-card">
-            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
-            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+            <li><a href="{% url 'signup' %}">Request New <strong>(Signup)</strong></a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing <strong>(Login)</strong></a></li>
         </div>
     </ul>
     {% endif %}

@@ -64,9 +64,14 @@ def gadget_index(request):
 
 def gadget_detail(request, gadget_id):
     gadget = Gadget.objects.get(id=gadget_id)
+    # Get all agents who have this specific gadget's ID in their "Gadgets" property
+    agents_with_gadget = Agent.objects.filter(gadgets__id=gadget_id)
+    # Hope this works
     return render(request, 'gadgets/gadget_detail.html', {
-        'gadget': gadget
+        'gadget': gadget,
+        'agents_with_gadget': agents_with_gadget
         })
+    
 """ Protected routes """
 
 @login_required

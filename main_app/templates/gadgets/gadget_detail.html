@@ -21,13 +21,13 @@
         <ul>
           <div class="links-card">
             {% if user.is_authenticated %}
-            <li>Manufactured by: [{{ gadget.manufacturer }}]</li>
+            <li><strong>Manufactured by</strong>: {{ gadget.manufacturer }}</li>
             {% else %}
             <h4 class="redacted-data-label">[Clearance required]</h4>
     <ul>
         <div class="links-card">
-            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
-            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+            <li><a href="{% url 'signup' %}">Request New <strong>(Signup)</strong></a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing <strong>(Login)</strong></a></li>
         </div>
     </ul>
             {% endif %}
@@ -37,6 +37,7 @@
 
       <section class="info-container">
         <img src="{% static 'images/toolbox.webp' %}" alt="toolbox">
+        
       </section>
   
       <section class="stats-container">
@@ -49,17 +50,40 @@
               <li> {{gadget.get_type_display}} </li>
               <li> File G-{{gadget.id}} </li>
               {% else %}
+              
               <h4 class="redacted-data-label">[Clearance required]</h4>
-    <ul>
+        <ul>
+
         <div class="links-card">
-            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
-            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+            <li><a href="{% url 'signup' %}">Request New <strong>(Signup)</strong></a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing <strong>(Login)</strong></a></li>
         </div>
-    </ul>
+      </ul>
               {% endif %}
-            </div>
+          </div>
           </ul>
         </div>
+
+         
+         
+
+        {% if user.is_authenticated %}
+        {% if agents_with_gadget.count %}
+        <h3 class="object-title">Owners</h3>
+          <ul>
+            <div class="links-card">
+          {% for agent in agents_with_gadget %}
+            <a href="{% url 'agent-detail' agent.id %}">
+              <li>{{agent.code_name}}</li>
+            </a>
+          {% endfor %} 
+        </div>
+          </ul>
+        {% else %}
+          <h4 class="redacted-data-label">[NO OWNERS]</h4>
+        {% endif %}
+        {% endif %}
+       
           
       </section>
 
@@ -72,8 +96,8 @@
       <h4 class="redacted-data-label">[Clearance required]</h4>
     <ul>
         <div class="links-card">
-            <li><a href="{% url 'signup' %}">Request New (Signup)</a></li>
-            <li><a href="{% url 'home' %}">Confirm Existing (Login)</a></li>
+            <li><a href="{% url 'signup' %}">Request New <strong>(Signup)</strong></a></li>
+            <li><a href="{% url 'home' %}">Confirm Existing <strong>(Login)</strong></a></li>
         </div>
     </ul>
       {% endif %}
