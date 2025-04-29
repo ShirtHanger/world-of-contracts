@@ -13,6 +13,7 @@
 
 
     <link href="{% static 'images/favicon.ico' %}" rel="icon" type="image/x-icon">
+    {% comment %} <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" > {% endcomment %}
     
     {% block head %} 
     {% endblock %}
@@ -24,7 +25,6 @@
         <a href="/">
           <h1>Global Contracts</h1>
           <h2>Malum necessarium</h2>
-          <h3><a href="https://linktr.ee/shirthanger">More apps by ShirtHanger</a></h3>
         </a>
       </div>
 
@@ -36,6 +36,9 @@
             About our organization
           </h5>
         </a>
+
+        <h3><a href="https://linktr.ee/shirthanger">More apps by ShirtHanger</a></h3>
+        
         <ul>
 
           {% if user.is_authenticated %} <!-- Conditional based on if user is logged in or not -->
